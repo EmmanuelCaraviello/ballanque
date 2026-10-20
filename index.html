@@ -31,25 +31,20 @@
 
 <header class="nav" id="nav">
   <a class="brand" href="#ingresso" data-cursor="HOME" aria-label="Ballanqué, torna all'ingresso"><i class="logo"></i><b>BALLANQUÉ<sup class="tm" aria-label="marchio">™</sup></b></a>
-  <nav class="nav-links" aria-label="Sale principali">
-    <a href="#collezione" data-room-link="03">Collezione</a>
-    <a href="#studio" data-room-link="05">Studio</a>
-    <a href="#archivio" data-room-link="06">Archivio</a>
-    <a href="#curatore" data-room-link="08">Curatore</a>
-    <a href="#campo" data-room-link="10">Dal campo</a>
-  </nav>
-  <span class="sr-only" aria-live="polite">Sala corrente: <span id="roomName">Ingresso</span></span>
+  <nav class="nav-links" aria-label="Navigazione principale">
+<a href="#studio" data-nav-link="studio">Studio</a>
+<a href="#museo" data-nav-link="museo">Museo</a>
+<a href="#commissiona" data-nav-link="commissiona">Contatti</a>
+</nav>
   <div class="nav-actions">
-    <button class="pill mono hide-s" id="guideBtn" type="button" aria-pressed="false" data-cursor="GUIDA">Guida</button>
-    <button class="pill mono plan-btn" id="planBtn" type="button" data-cursor="PIANTA" aria-haspopup="dialog" aria-label="Apri la pianta del museo">Pianta <b id="roomNo">00</b></button>
+    <button class="pill mono plan-btn" id="planBtn" type="button" aria-haspopup="dialog" aria-controls="plan" aria-expanded="false">Menu</button>
     <a class="pill solid mono hide-s" href="#commissiona" data-cursor="START">Start a project →</a>
     <a class="pill solid mono start-s" href="#commissiona" aria-label="Start a project">Start →</a>
   </div>
 </header>
 
 <main>
-<!-- 00 INGRESSO -->
-<section class="threshold" id="ingresso" data-room="00" data-name="Ingresso">
+<section class="threshold" id="ingresso">
   <i class="logo hero-logo" role="img" aria-label="Ballanqué Football"></i>
   <div class="hero-stage">
     <div class="hero-art" aria-hidden="true">
@@ -64,30 +59,55 @@
       </h1>
     </div>
   </div>
-  <div class="hero-foot">
-    <a class="enter" href="#foyer" data-cursor="ENTRA"><i></i>Entra nel museo</a>
+  <p class="hero-description">Atelier di identità calcistica. Divise e identità visive per club, dalla storia al campo.</p>
+<div class="hero-foot">
+    <a class="enter" href="#museo" data-cursor="ENTRA"><i></i>Entra nel museo</a>
     <a class="mono muted hide-s" href="https://www.instagram.com/ballanquefootball/" target="_blank" rel="noopener">@ballanquefootball</a>
-    <span class="mono muted ticket-line" id="ticket">Visitatore Nº 00000</span>
   </div>
 </section>
-
-<!-- 01 FOYER -->
-<section class="room foyer" id="foyer" data-room="01" data-name="Foyer">
-  <div class="foyer-stage wrap">
-    <div class="room-head"><span class="mono no">Sala 01</span><span class="mono muted">Foyer — Manifesto</span></div>
-    <div class="mlines" id="kin">
-      <h2 class="ml cur">A football club<br>is more than<br>11 players.</h2>
-      <p class="ml">It is<br><em>belonging.</em></p>
-      <p class="ml">It is<br><em class="r">identity.</em></p>
-      <p class="ml">It is<br>culture.</p>
-      <p class="ml">That is<br><em>Ballanqué.</em></p>
+<section class="room studio wrap" id="studio" data-nav-section="studio" aria-labelledby="studioTitle">
+  <div class="room-head"><span class="mono no">01 / Studio</span><span class="mono muted">Football Club Identity &amp; Culture</span></div>
+  <div class="studio-intro">
+    <h2 id="studioTitle">From idea<br>to identity.</h2>
+    <div class="studio-copy">
+      <p>Non creiamo solo maglie. Lavoriamo con i club per costruire quello che viene prima e dopo la maglia: un'identità.</p>
+      <p>Ballanqué è un atelier di identità calcistica. Partiamo dalla storia, dai colori, dal territorio e dalle persone che tengono in vita un club e li traduciamo in un linguaggio visivo che si può indossare.</p>
+      <p class="mono studio-services">Ricerca · Identità visiva · Design delle divise</p>
     </div>
-    <p class="plaque-s"><span class="mono">Testo di sala</span>Questo museo raccoglie identità. Ogni maglia esposta nasce da un club, da un territorio e da una comunità. Il percorso parte dal tessuto e arriva al campo.</p>
+  </div>
+  <div class="phases compact-phases" id="phases">
+    <div class="phase"><h3><small>01 / Listen</small>Ascoltiamo.</h3><p>Conosciamo il club e le sue persone. Prima di disegnare, ascoltiamo chi lo tiene in vita.</p></div>
+    <div class="phase"><h3><small>02 / Discover</small>Esploriamo.</h3><p>Studiamo storia e territorio: archivi, fotografie, architetture e strade intorno al campo.</p></div>
+    <div class="phase"><h3><small>03 / Design</small>Disegniamo.</h3><p>Trasformiamo la storia in colori, pattern, simboli e dettagli della divisa.</p></div>
   </div>
 </section>
 
-<!-- 02 SALA I -->
-<section class="room canvas-room wrap" id="tela" data-room="02" data-name="The shirt is the canvas" style="padding-block:0">
+<section class="museum" id="museo" data-nav-section="museo" aria-label="Museo Ballanqué">
+<section class="room collection" id="collezione">
+  <div class="wrap">
+    <div class="room-head"><span class="mono no">02 / Museo</span><span class="mono muted">La collezione Ballanqué</span></div>
+    <div class="coll-top">
+      <h2>The Collection<em>A collection of identities.</em></h2>
+    </div>
+    <p class="museum-intro">Ogni maglia nasce da un club, da un territorio e da una comunità. Apri un progetto per esplorare divise, dettagli e fotografie dal campo.</p>
+<div class="filters" id="filters" role="group" aria-label="Filtra le divise">
+      <button class="pill mono" data-f="all" aria-pressed="true">Tutte</button>
+      <button class="pill mono" data-f="home" aria-pressed="false">Home</button>
+      <button class="pill mono" data-f="away" aria-pressed="false">Away</button>
+      <button class="pill mono" data-f="giocatore" aria-pressed="false">Giocatore</button>
+      <button class="pill mono" data-f="portiere" aria-pressed="false">Portiere</button>
+      <button class="pill mono" data-f="speciale" aria-pressed="false">Edizioni speciali</button>
+    </div>
+  </div>
+  <div class="wall-stage" id="wallStage">
+    <div class="wall" id="wall">
+      <div class="track" id="track"></div>
+    </div>
+    <div class="wrap">
+    </div>
+  </div>
+</section>
+<section class="room canvas-room wrap" id="tela" style="padding-block:0">
   <div class="canvas-stage" id="canvasStage">
     <div class="lens" data-cursor="LOOK">
       <div class="zoomer" id="zoomer"><img src="assets/image-05.webp" alt="Maglia azzurra con colletto rosso, pattern di case a gradoni, stemma del club e marchio Ballanqué" width="3388" height="2768" decoding="async" loading="lazy"></div>
@@ -95,7 +115,7 @@
       <span class="mag mono" id="mag">× 1.0</span>
     </div>
     <div class="canvas-copy">
-      <div class="room-head" style="margin-bottom:28px"><span class="mono no">Sala 02</span><span class="mono muted">Opera osservata da vicino — Cremonese, 2026</span></div>
+      <div class="room-head" style="margin-bottom:28px"><span class="mono no">Dentro il progetto</span><span class="mono muted">Opera osservata da vicino — Cremonese, 2026</span></div>
       <h2 class="canvas-title">The shirt is the canvas<span class="mono" id="stepNo">01 / 07</span></h2>
       <div class="lens-ctrl" id="lensCtrl">
         <div class="lens-nav">
@@ -116,101 +136,13 @@
         <li><span class="mono">VI</span><div><strong>La cucitura</strong><span class="muted">Il taglio raglan è segnato da un filo d'oro che scende dal colletto fino al sottomanica.</span></div></li>
         <li><span class="mono">VII</span><div><strong>Il polsino</strong><span class="muted">Il bordo rosso chiude la manica, con lo stesso profilo d'oro del colletto.</span></div></li>
       </ol>
-      <p class="note">Scorrete lentamente: la lente segue il vostro passo. Ogni dettaglio racconta una parte della storia del club.</p>
+      <p class="note">Usa i pulsanti per osservare la maglia e i suoi dettagli. Puoi continuare a scorrere in qualsiasi momento.</p>
     </div>
   </div>
 </section>
-
-<!-- 03 SALA II COLLEZIONE -->
-<section class="room collection" id="collezione" data-room="03" data-name="The Collection">
-  <div class="wrap">
-    <div class="room-head"><span class="mono no">Sala 03</span><span class="mono muted">Allestimento permanente</span></div>
-    <div class="coll-top">
-      <h2>The Collection<em>A collection of identities.</em></h2>
-      <div class="modes" role="group" aria-label="Modalità di visita">
-        <button class="pill mono" data-mode="walk" aria-pressed="true" data-cursor="WALK">Walk</button>
-        <button class="pill mono" data-mode="archive" aria-pressed="false" data-cursor="ARCHIVE">Archive</button>
-      </div>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="Filtra le divise">
-      <button class="pill mono" data-f="all" aria-pressed="true">Tutte</button>
-      <button class="pill mono" data-f="home" aria-pressed="false">Home</button>
-      <button class="pill mono" data-f="away" aria-pressed="false">Away</button>
-      <button class="pill mono" data-f="giocatore" aria-pressed="false">Giocatore</button>
-      <button class="pill mono" data-f="portiere" aria-pressed="false">Portiere</button>
-      <button class="pill mono" data-f="speciale" aria-pressed="false">Edizioni speciali</button>
-    </div>
-  </div>
-  <div class="wall-stage" id="wallStage">
-    <div class="wall" id="wall">
-      <div class="track" id="track"></div>
-    </div>
-    <div class="wrap">
-      <div class="counter mono muted"><span id="cnt" hidden>01 / 07</span><span class="bar"><i id="cntBar"></i></span><span class="counter-hint">Passate sopra un'opera per vederne il retro · cliccate per entrare nella mostra</span></div>
-    </div>
-  </div>
 </section>
-
-
-<!-- 04 MANIFESTO -->
-<section class="finale wrap" id="manifesto" data-room="04" data-name="Manifesto">
-  <div>
-    <p class="pre">Il prodotto è la maglia. Il vero prodotto è</p>
-    <div class="big lines" id="finaleLines">
-      <span class="gold">Identity.</span>
-    </div>
-  </div>
-</section>
-
-<!-- 05 SALA IV STUDIO -->
-<section class="room studio wrap" id="studio" data-room="05" data-name="The Studio">
-  <div class="room-head"><span class="mono no">Sala 05</span><span class="mono muted">Il laboratorio</span></div>
-  <h2>From idea<br>to identity.</h2>
-  <div class="phases" id="phases">
-    <span class="spine"><i id="spine"></i></span>
-    <div class="phase"><h3><small>Fase 01</small>Listen</h3><div><p>Conosciamo il club. Presidenti, capitani, magazzinieri, tifosi. Prima di disegnare, ascoltiamo.</p><p class="note">Il primo incontro dura sempre più del previsto. È lì che nasce la maglia.</p></div></div>
-    <div class="phase"><div class="vis" aria-hidden="true" id="vis2"></div><div><h3><small>Fase 02</small>Discover</h3><p style="margin-top:14px">Studiamo storia e territorio: archivi, fotografie, architetture, le strade intorno al campo.</p></div></div>
-    <div class="phase"><h3><small>Fase 03</small>Design</h3><div><p>Trasformiamo la storia in linguaggio visivo: colori, pattern, simboli, tipografia dei numeri.</p></div></div>
-    <div class="phase"><div class="vis" aria-hidden="true" id="vis4"></div><div><h3><small>Fase 04</small>Build</h3><p style="margin-top:14px">Creiamo la divisa: tessuti, stampa, ricami, prove. Ogni dettaglio viene verificato sul corpo.</p></div></div>
-    <div class="phase"><div class="vis vis-ph" id="vis5"></div><div><h3><small>Fase 05</small>Belong</h3><p style="margin-top:14px">La maglia entra in campo e diventa identità. Da quel momento appartiene al club.</p></div></div>
-  </div>
-</section>
-
-<!-- 06 ARCHIVIO -->
-<section class="room archive-room wrap" id="archivio" data-room="06" data-name="Archivio — Football Culture">
-  <div class="room-head"><span class="mono no">Sala 06</span><span class="mono muted">Archivio del museo</span></div>
-  <h2>Football<br>culture.</h2>
-  <div class="tiles" id="tiles"></div>
-  <p class="mono muted tiles-note">Ogni riquadro apre la sala o la mostra che ne racconta una parte. L'archivio cresce a ogni nuovo progetto.</p>
-</section>
-
-<!-- 07 SALA PEOPLE -->
-<section class="room people wrap" id="persone" data-room="07" data-name="People">
-  <div class="room-head"><span class="mono no">Sala 07</span><span class="mono muted">Sala fotografica — People</span></div>
-  <h2 style="font-size:var(--h-room);margin-bottom:var(--head-gap)">Football is<br>made of people.</h2>
-  <div class="prints" id="prints"></div>
-  <p class="note">Le fotografie di questa sala vengono dai campi dei club, senza pose da catalogo e senza stock. Cliccate una stampa per entrare nella mostra della maglia.</p>
-</section>
-
-<!-- 08 CURATORE -->
-<section class="room curator wrap" id="curatore" data-room="08" data-name="Il Curatore">
-  <div class="room-head"><span class="mono no">Sala 08</span><span class="mono muted">Il Curatore — About</span></div>
-  <div class="cols">
-    <div style="display:grid;gap:30px;align-content:start"><i class="logo lit" aria-label="Logo Ballanqué" role="img"></i><span class="mono muted">Ballanqué Football™<br>Football Club Identity &amp; Culture</span></div>
-    <div style="display:grid;gap:34px">
-      <p class="big">Non creiamo solo maglie. Lavoriamo con i club per costruire quello che viene prima e dopo la maglia: un'identità.</p>
-      <div class="body">
-        <p>Ballanqué è un atelier di identità calcistica. Partiamo dalla storia di un club, dai suoi colori, dal suo territorio e dalle persone che lo tengono in vita, e li traduciamo in un linguaggio visivo che si può indossare.</p>
-        <p>Il giaguaro del nostro simbolo guarda la palla: attenzione, istinto, appartenenza. Lo stesso sguardo che portiamo su ogni progetto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- CONTATTI -->
-    <section class="room commission wrap" id="commissiona" data-room="09" data-name="Contatti" aria-labelledby="contactTitle">
-      <div class="room-head"><span class="mono no">Sala 09</span><span class="mono muted">Contatti — Start a project</span></div>
+<section class="room commission wrap" id="commissiona" data-nav-section="commissiona" aria-labelledby="contactTitle">
+      <div class="room-head"><span class="mono no">03 / Contatti</span><span class="mono muted">Contatti — Start a project</span></div>
       <div class="contact-grid">
         <div>
           <h2 id="contactTitle">Build your<br>identity.</h2>
@@ -227,25 +159,11 @@
         </div>
       </div>
     </section>
-
-<!-- 10 DAL CAMPO -->
-<section class="room field-room wrap" id="campo" data-room="10" data-name="Dal campo">
-  <div class="room-head"><span class="mono no">Sala 10</span><span class="mono muted">Dal campo — Galleria</span></div>
-  <h2>Worn on<br>the pitch.</h2>
-  <p class="muted lede-f">Le maglie Ballanqué fuori dallo studio: in campo, per strada, addosso alle squadre che le hanno scelte. Toccate una foto per aprire la mostra della maglia.</p>
-  <div id="gal"></div>
-</section>
 </main>
 
 <!-- USCITA -->
-<footer class="exit wrap" id="uscita" data-room="11" data-name="Uscita">
-  <p class="thanks">Grazie per la visita.</p>
-  <div class="exit-grid">
-    <div><span class="num" id="statRooms">0 / 11</span><span class="mono muted">Sale visitate</span></div>
-    <div><span class="num" id="statWorks">0 / 7</span><span class="mono muted">Opere osservate</span></div>
-    <div><span class="num" id="statTicket">00000</span><span class="mono muted">Il vostro biglietto</span></div>
-  </div>
-  <div class="exit-base mono muted">
+<footer class="exit wrap" id="uscita">
+<div class="exit-base mono muted">
     <span>© 2026 Ballanqué Football™. Ballanqué™ e il simbolo del giaguaro sono marchi di Ballanqué Football.</span>
     <a href="mailto:collab@ballanque.com">collab@ballanque.com</a>
     <a href="https://www.instagram.com/ballanquefootball/" target="_blank" rel="noopener">Instagram @ballanquefootball</a>
@@ -257,14 +175,13 @@
 <div class="expo" id="expo" role="dialog" aria-modal="true" aria-labelledby="expoTitle" tabindex="-1"></div>
 
 <!-- PIANTA -->
-<div class="plan" id="plan" role="dialog" aria-modal="true" aria-label="Pianta del museo">
-  <div class="plan-top"><div><span class="mono">Pianta del museo</span><span class="plan-here" id="planHere">Siete qui — Sala 00, Ingresso</span></div><div style="display:flex;gap:8px"><button class="pill mono plan-guide" id="planGuide" type="button" aria-pressed="false">Guida</button><button class="pill mono" id="planClose" type="button" data-cursor="CHIUDI">Chiudi ✕</button></div></div>
-  <div class="plan-body">
-    <svg viewBox="0 0 420 300" id="planSvg" aria-hidden="true"><polyline class="route" id="planRoute" points=""/></svg>
-    <nav class="plan-list" id="planList" aria-label="Sale"></nav>
-  </div>
-  <div class="mono muted" id="planFoot">Sale visitate: 0</div>
-</div>
+<div class="plan site-menu" id="plan" role="dialog" aria-modal="true" aria-label="Menu principale">
+<div class="plan-top"><span class="mono">Ballanqué Football™</span><button class="pill mono" id="planClose" type="button">Chiudi ✕</button></div>
+<div class="plan-body"><nav class="plan-list" aria-label="Sezioni del sito">
+<a href="#studio"><span class="mono">01</span><span>Studio</span></a>
+<a href="#museo"><span class="mono">02</span><span>Museo</span></a>
+<a href="#commissiona"><span class="mono">03</span><span>Contatti</span></a>
+</nav></div></div>
 
 <div class="toast mono" id="toast" role="status"></div>
 
