@@ -13,6 +13,8 @@ var expo = $("#expo"),
   lastOpener = null;
 /** Apre il progetto richiesto e costruisce i capitoli della scheda. */
 function openExpo(i) {
+  // Una nuova scheda deve scollegare l'osservatore della galleria precedente.
+  if (expo._cleanup) expo._cleanup();
   var w = WORKS[i];
   var prev = (i - 1 + WORKS.length) % WORKS.length,
     next = (i + 1) % WORKS.length;
@@ -25,7 +27,7 @@ function openExpo(i) {
     prev +
     '">← Precedente</button><button class="pill mono" data-go="' +
     next +
-    '">Successiva →</button><button class="pill solid mono" data-close>Torna alla collezione ✕</button></div></div>' +
+    '">Successiva →</button><button class="pill solid mono" data-close aria-label="Chiudi il progetto e torna alla collezione">Chiudi ✕</button></div></div>' +
     '<div class="expo-hero"><div><span class="mono muted">' +
     w.n +
     " / " +
@@ -231,7 +233,14 @@ function initViewer(w) {
     cur = 0;
   /** Ricava la vista corrente dalla posizione orizzontale del visore. */
   function idx() {
-    return Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth));
+    // Safari può superare temporaneamente i limiti durante il rimbalzo o la rotazione.
+    return Math.max(
+      0,
+      Math.min(
+        slides.length - 1,
+        Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)),
+      ),
+    );
   }
   /** Porta il visore alla vista richiesta rispettando il movimento ridotto. */
   function show(k) {
@@ -250,6 +259,19 @@ function initViewer(w) {
     dots.forEach(function (d, j) {
       d.setAttribute("aria-current", j === k);
     });
+    // Centra solo la fila dei selettori, senza spostare la pagina o il dialogo.
+    var activeDot = dots[k];
+    var dotRow = $(".vdots", expo);
+    if (activeDot && dotRow) {
+      dotRow.scrollTo({
+        left:
+          activeDot.offsetLeft -
+          dotRow.offsetLeft -
+          dotRow.clientWidth / 2 +
+          activeDot.offsetWidth / 2,
+        behavior: RM ? "auto" : "smooth",
+      });
+    }
     if (prev) prev.disabled = k === 0;
     if (next) next.disabled = k === slides.length - 1;
   }
@@ -317,6 +339,33 @@ function initViewer(w) {
   }
   tr.addEventListener("pointerup", end);
   tr.addEventListener("pointercancel", end);
+  /** Mantiene la stessa foto quando il tablet ruota o cambia la larghezza. */
+  var lastWidth = tr.clientWidth;
+  var resizeObserver =
+    typeof ResizeObserver !== "undefined"
+      ? new ResizeObserver(function () {
+          var width = tr.clientWidth;
+          if (!width || width === lastWidth) return;
+          lastWidth = width;
+          // Aspetta che lo scroll-snap nativo abbia assestato il nuovo layout.
+          var selected = cur;
+          clearTimeout(tr._t);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (!tr.isConnected) return;
+              tr.scrollTo({
+                left: selected * tr.clientWidth,
+                behavior: "instant",
+              });
+            });
+          });
+        })
+      : null;
+  if (resizeObserver) resizeObserver.observe(tr);
+  expo._cleanup = function () {
+    clearTimeout(tr._t);
+    if (resizeObserver) resizeObserver.disconnect();
+  };
   expo._show = show;
   upd();
 }
@@ -370,6 +419,7 @@ function chap(n, t, s, body) {
 }
 /** Chiude la scheda e restituisce il focus all’opera di provenienza. */
 function closeExpo() {
+  if (expo._cleanup) expo._cleanup();
   expo.classList.remove("open");
   setInert(false);
   document.documentElement.style.overflow = "";

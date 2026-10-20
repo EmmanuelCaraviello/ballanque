@@ -1,0 +1,367 @@
+/**
+ * Rifiniture per telefono, tablet e touch.
+ * Caricato dopo brand.css: modifica geometrie e controlli senza cambiare il brand.
+ * Le gallerie scorrono al loro interno; la pagina conserva lo scroll nativo.
+ */
+
+/* Le colonne devono potersi restringere anche con nomi di club molto lunghi. */
+.studio-intro > *,
+.contact-grid > *,
+.expo-hero > *,
+.chap > *,
+.viewer,
+.lens-nav {
+  min-width: 0;
+}
+
+/* Il vecchio selettore Walk/Archive è stato rimosso: i filtri ora sono sempre disponibili. */
+.collection .filters {
+  display: flex;
+}
+
+/* Indicatori con un'area touch reale di 44 px; il segno visibile resta discreto. */
+.vctrl {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  width: min(100%, 420px);
+  min-width: 0;
+}
+.vdots,
+.vdots.many {
+  display: flex;
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  gap: 0;
+  padding-block: 2px;
+}
+.vdots button,
+.vdots.many button {
+  position: relative;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+}
+.vdots button::after {
+  content: "";
+  position: absolute;
+  inset: 20px 13px;
+  background: var(--line);
+  border-radius: 4px;
+}
+.vdots button[aria-current="true"] {
+  background: transparent;
+}
+.vdots button[aria-current="true"]::after {
+  background: var(--ocher);
+}
+.varr:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Un'altezza esplicita rende determinabile il 100% dell'immagine: niente maglie tagliate. */
+.vslide {
+  height: min(72svh, 660px);
+  min-height: 0;
+  aspect-ratio: auto;
+}
+.vslide img,
+.vslide.photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+/* Area sicura dei dispositivi con notch o indicatore Home. */
+.expo,
+.plan.site-menu {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.expo-bar .pill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+}
+.expo-hero h2,
+.expo-hero .t,
+.label .c,
+.label .t,
+.exit-base a {
+  overflow-wrap: anywhere;
+}
+
+/* Tablet: un solo intervallo fino a 1024 px include iPad da 820, 834 e 1024 px. */
+@media (max-width: 1100px) {
+  .nav-actions {
+    margin-left: auto;
+  }
+}
+@media (max-width: 1024px) {
+  :root {
+    --gutter: clamp(18px, 3vw, 30px);
+    --room-pad: clamp(44px, 6vw, 64px);
+  }
+  .threshold {
+    min-height: min(900px, 100svh);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 90px);
+  }
+  .hero-stage {
+    min-height: 300px;
+  }
+  .hero-foot {
+    justify-content: center;
+    text-align: center;
+    gap: 18px 28px;
+  }
+  .hero-description {
+    max-width: 40ch;
+  }
+  .studio-intro,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .studio-copy {
+    max-width: 62ch;
+  }
+  .collection .track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .expo-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .expo-hero > div:first-child {
+    max-width: 65ch;
+  }
+  .viewer {
+    width: min(100%, 660px);
+    justify-self: center;
+  }
+  .vslide {
+    max-height: 62svh;
+  }
+  .chap {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 16px 22px;
+  }
+  .chap > div:last-child {
+    grid-column: 2;
+  }
+  .pgrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* La lente resta prima dei comandi, senza altezze vincolate alla finestra. */
+  .museum .canvas-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .canvas-copy {
+    display: contents;
+  }
+  .canvas-copy .room-head {
+    order: 1;
+    margin-bottom: 0 !important;
+  }
+  .canvas-copy h2.canvas-title {
+    order: 2;
+    flex-wrap: wrap;
+    font-size: clamp(20px, 3vw, 28px);
+  }
+  .lens {
+    order: 3;
+    width: min(100%, 680px);
+    align-self: center;
+  }
+  .lens-ctrl {
+    order: 4;
+    width: 100%;
+  }
+  #steps {
+    order: 5;
+    margin-top: 0;
+    min-height: 120px;
+  }
+  #steps li:not(.cur) {
+    display: none;
+  }
+  .canvas-copy .note {
+    order: 6;
+  }
+}
+
+/* Telefono: una colonna e comandi che non invadono l'immagine del progetto. */
+@media (max-width: 600px) {
+  .threshold {
+    min-height: 100svh;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 86px);
+    padding-bottom: 28px;
+  }
+  .hero-stage {
+    min-height: clamp(240px, 65vw, 360px);
+  }
+  .hero-art img {
+    width: 100%;
+  }
+  .hero-description {
+    margin-block: 20px 26px;
+    padding-inline: 0;
+  }
+  .hero-foot > .enter {
+    min-height: 44px;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .collection .track {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .collection .work .frame {
+    aspect-ratio: 1;
+  }
+  .filters {
+    gap: 8px;
+  }
+  .collection .filters .pill {
+    padding: 11px 13px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .label .c {
+    line-height: 1.25;
+  }
+  .expo-bar {
+    gap: 10px;
+    padding-block: calc(env(safe-area-inset-top, 0px) + 10px) 12px;
+  }
+  .expo-bar > span {
+    width: 100%;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+  }
+  .expo-bar > div {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr auto;
+    width: 100%;
+    gap: 7px !important;
+  }
+  .expo-bar .pill {
+    padding: 10px;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+  .expo-hero h2 {
+    font-size: clamp(30px, 8vw, 46px);
+    line-height: 1.04;
+  }
+  .expo-hero .t {
+    font-size: clamp(21px, 6vw, 30px);
+    line-height: 1.35;
+  }
+  .vbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .vctrl {
+    width: 100%;
+  }
+  .vcap b {
+    line-height: 1.5;
+  }
+  .chap {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .chap > div:last-child {
+    grid-column: auto;
+  }
+  .chap p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .pgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+  .pthumb .mono {
+    overflow-wrap: anywhere;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+  .sw {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .sw i {
+    height: 56px;
+  }
+  .expo-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .expo-nav .pill {
+    min-height: 48px;
+    white-space: normal;
+  }
+  .exit-base {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Il retro non deve restare "incollato" dopo un tap sui browser touch. */
+@media (hover: none) {
+  .work:hover .frame img.b {
+    opacity: 0;
+  }
+  .work:hover .frame img.f.has-b {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (pointer: coarse) {
+  .pill,
+  .varr,
+  .lens-chips button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .cursor {
+    display: none;
+  }
+}
+
+/* In orizzontale non si forza un'intera schermata dentro un'altezza troppo bassa. */
+@media (max-height: 600px) and (orientation: landscape) {
+  .threshold {
+    min-height: auto;
+  }
+  .hero-stage {
+    min-height: 260px;
+  }
+  .vslide {
+    max-height: none;
+    height: min(75vw, 460px);
+    aspect-ratio: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .expo,
+  .expo.open,
+  .plan,
+  .plan.open {
+    transition: none;
+  }
+}

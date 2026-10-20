@@ -4,7 +4,7 @@
 
 - **Testi principali e sezioni:** `index.html`.
 - **Colori e font:** variabili in `base.css`, applicazione finale in `brand.css`.
-- **Spazi, griglie e dispositivi:** `layout.css` e le regole responsive dei componenti.
+- **Spazi e griglie:** `layout.css`; correzioni per telefono, iPad e touch in `responsive.css`.
 - **Progetti del Museo:** `projects.js`.
 - **Schede, fotografie e carosello:** `exhibition.js`.
 - **Filtri del Museo:** `collection.js`.
@@ -50,6 +50,12 @@ Lo scroll della pagina non deve essere trattenuto dalle animazioni narrative.
 contengono anche regole storiche del sito ricevuto; non sono nuove sezioni da
 riattivare. Questa riorganizzazione conserva la resa precedente: l'eventuale
 rimozione di regole obsolete va fatta in un intervento separato con prova visiva.
+
+`responsive.css` viene caricato per ultimo: unifica il comportamento fino a 1024 px
+e aggiunge le regole specifiche per telefono fino a 600 px. Conservare le aree
+touch di 44 px e il contenimento delle immagini nel visore.
+La galleria usa `ResizeObserver` per mantenere la foto corrente quando cambia
+la larghezza; l'osservatore viene scollegato alla chiusura o al cambio di progetto.
 
 ## Commenti e stile
 

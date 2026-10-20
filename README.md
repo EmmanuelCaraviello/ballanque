@@ -15,6 +15,7 @@ assets/
     refinements.css        Rifiniture mantenute dal sito ricevuto
     layout.css             Struttura riordinata e regole responsive
     brand.css              Font ufficiali e regole finali del brand
+    responsive.css         Telefono, iPad, touch e gallerie adattive
   js/
     main.js                Punto di ingresso dei moduli JavaScript
     core.js                Selettori DOM e disponibilità delle animazioni
