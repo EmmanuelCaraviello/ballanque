@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "private": true,
+  "name": "ballanque-football",
+  "type": "module"
+}

@@ -1,0 +1,98 @@
+/* Tipografia ufficiale e regole finali del brand. */
+/* Tipografia ufficiale: 96 pt (128 px) come limite dei grandi titoli. */
+:root {
+  --ink-2: color-mix(in srgb, #261d18 96%, #ebdac0);
+  --ink-3: color-mix(in srgb, #261d18 92%, #c5894b);
+  --muted: rgba(235, 218, 192, 0.78);
+}
+.hero-type h1 {
+  font-family: var(--f-hero);
+  font-weight: 800;
+  font-size: clamp(26px, 6.8vw, 128px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+h1,
+h2,
+h3 {
+  font-weight: 800;
+}
+.label .c,
+.expo-hero h2,
+.chap h3,
+.phase h3,
+.studio h2,
+.commission h2 {
+  font-weight: 800;
+}
+.label .t,
+.canvas-title,
+.canvas-title .mono,
+.note,
+.expo-hero .t {
+  font-family: var(--f-title);
+  font-style: normal;
+}
+.mono,
+.nav-links a,
+.pill,
+.lens-chips button {
+  font-family: var(--f-mono);
+  font-weight: 600;
+}
+.nav-links a {
+  letter-spacing: 0.09em;
+  opacity: 0.9;
+}
+.studio-services {
+  font-size: 12px;
+  letter-spacing: 0.07em;
+}
+.studio-copy,
+.contact-copy {
+  font-family: var(--f-body);
+}
+.studio .muted {
+  color: rgba(38, 29, 24, 0.76);
+}
+.studio .room-head .no,
+.phase h3 small,
+.studio-services {
+  color: var(--clay);
+}
+.plan.site-menu,
+.museum,
+.commission {
+  color-scheme: dark;
+}
+.studio {
+  color-scheme: light;
+}
+.hero-type h1 .gold {
+  color: var(--chalk);
+}
+.room-head .no {
+  color: var(--ocher);
+}
+.studio .room-head .no {
+  color: var(--clay);
+}
+:focus-visible {
+  outline-color: var(--ocher);
+}
+.studio :focus-visible {
+  outline-color: var(--jade);
+}
+@media (max-width: 820px) {
+  .hero-type h1 {
+    font-size: clamp(26px, 6.9vw, 57px);
+  }
+  .nav .brand b {
+    font-family: var(--f-mono);
+    font-weight: 700;
+  }
+  .lens-chips button {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+}
