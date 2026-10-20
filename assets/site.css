@@ -80,13 +80,6 @@ p{margin:0}
 .enter:hover i{width:90px}
 @media (max-width:820px){.hero-art img{width:96vw}.hero-foot{justify-content:center;text-align:center}}
 
-/* porte d'ingresso (create via JS) */
-.doors{position:fixed;inset:0;z-index:100;display:flex;cursor:pointer}
-.doors .leaf{flex:1;background:var(--ink);position:relative;border:0}
-.doors .leaf:first-child{border-right:1px solid rgba(201,138,75,.35)}
-.doors .seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:22px;text-align:center;z-index:2;pointer-events:none}
-.doors .seal .logo{width:46px}
-
 /* ---------- SALE: intestazione comune ---------- */
 .room{position:relative;padding-block:var(--room-pad)}
 .room-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-top:1px solid var(--line);padding-top:12px;margin-bottom:var(--head-gap);flex-wrap:wrap}

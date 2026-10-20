@@ -455,26 +455,8 @@ $("#copyBtn").addEventListener("click",function(){
   function sel(){var r=document.createRange();r.selectNodeContents($("#sheet"));var s=getSelection();s.removeAllRanges();s.addRange(r);toast("Testo selezionato: copiatelo con Ctrl/Cmd + C")}
 });
 
-/* ===================== PORTE D'INGRESSO ===================== */
-var seen=false; try{seen=sessionStorage.getItem("bq-in")==="1"}catch(e){}
-if(!RM&&hasG&&!seen){
-  var doors=document.createElement("div"); doors.className="doors"; doors.setAttribute("role","button"); doors.setAttribute("aria-label","Entra nel museo"); doors.tabIndex=0;
-  doors.innerHTML='<div class="leaf"></div><div class="leaf"></div><div class="seal"><i class="logo lit"></i><span class="mono muted">Ballanqué™ Museum</span><span class="mono" style="color:var(--ocher)">Entra →</span><button class="mono" id="skip" style="pointer-events:auto;background:none;border:0;color:var(--muted);cursor:pointer;margin-top:30px;text-decoration:underline">Salta l\'introduzione</button></div>';
-  document.body.appendChild(doors);
-  var opened=false;
-  var openDoors=function(){ if(opened)return; opened=true;
-    try{sessionStorage.setItem("bq-in","1")}catch(e){}
-    var l=$$(".leaf",doors);
-    gsap.timeline({onComplete:function(){doors.remove()}})
-      .to(".doors .seal",{opacity:0,duration:.4})
-      .to(l[0],{xPercent:-100,duration:1.4,ease:"power4.inOut"},.2)
-      .to(l[1],{xPercent:100,duration:1.4,ease:"power4.inOut"},.2);
-    heroIn(.7);
-  };
-  doors.addEventListener("click",openDoors);
-  doors.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openDoors()}});
-  setTimeout(openDoors,2600);
-}else if(hasG&&!RM){ heroIn(.1) }
+/* Ingresso diretto: animazione hero senza schermata o attesa iniziale. */
+if(hasG&&!RM){ heroIn(0) }
 
 function heroIn(delay){
   var img="#heroShirt", rows="#heroTitle .row > span";
