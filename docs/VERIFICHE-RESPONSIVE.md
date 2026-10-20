@@ -25,3 +25,11 @@ di telefono e iPad: la divisa intera resta contenuta nel visore.
 
 Controlli statici: `npm run check` e `git diff --check`.
 Resta consigliata una prova su Safari iPhone/iPad reali prima della pubblicazione.
+
+## Animazioni del Museo
+
+Dopo l'aggiunta delle sequenze sono state ripetute le interazioni con touch
+simulato su telefono e iPad, senza overflow o errori JavaScript.
+Su desktop sono stati verificati avvio dei titoli mascherati, comparsa delle opere,
+svelamento delle miniature fotografiche e arresto delle animazioni passando
+alla preferenza di movimento ridotto durante la visita.

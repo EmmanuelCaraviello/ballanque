@@ -8,7 +8,8 @@
 - **Progetti del Museo:** `projects.js`.
 - **Schede, fotografie e carosello:** `exhibition.js`.
 - **Filtri del Museo:** `collection.js`.
-- **Animazioni:** `animations.js`; cursore separato in `cursor.js`.
+- **Animazioni:** ingresso in `animations.js`, sequenze del Museo in `museum-motion.js`,
+  maschere in `motion.css`; cursore separato in `cursor.js`.
 - **Menu e accessibilità:** `navigation.js` e `dialogs.js`.
 
 ## Dati del Museo
@@ -43,6 +44,14 @@ funzionare anche senza animazioni.
 La scheda progetto e il menu sono dialoghi: bloccare lo sfondo solo mentre sono
 aperti, mantenere il focus nel dialogo e restituirlo al controllo di provenienza.
 Lo scroll della pagina non deve essere trattenuto dalle animazioni narrative.
+
+`initMuseumMotion(container, scroller)` osserva la pagina o il dialogo del progetto.
+Ogni ingresso viene eseguito una volta: parole dei titoli dietro una maschera,
+opere con lieve rotazione e fotografie svelate dal basso.
+Il testo rimane semanticamente invariato; nessun contenuto dipende da uno stato
+CSS nascosto. La funzione restituisce una pulizia da chiamare prima di cambiare
+progetto e alla chiusura. La preferenza di movimento ridotto interrompe anche
+le sequenze native già in corso.
 
 ## CSS
 

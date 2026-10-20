@@ -16,6 +16,7 @@ assets/
     layout.css             Struttura riordinata e regole responsive
     brand.css              Font ufficiali e regole finali del brand
     responsive.css         Telefono, iPad, touch e gallerie adattive
+    motion.css             Maschere dei titoli e supporto al movimento ridotto
   js/
     main.js                Punto di ingresso dei moduli JavaScript
     core.js                Selettori DOM e disponibilità delle animazioni
@@ -27,6 +28,7 @@ assets/
     lens.js                Ingrandimento manuale dei dettagli della maglia
     cursor.js              Cursore decorativo per il mouse
     animations.js          Animazioni di ingresso e comparsa
+    museum-motion.js       Titoli, opere e fotografie che compaiono scorrendo
   images/                  Logo, divise, foto e anteprima social
 docs/
   MANUTENZIONE.md          Dipendenze, convenzioni e guida agli interventi

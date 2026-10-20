@@ -2,11 +2,12 @@
  * Schede progetto del Museo: galleria, foto, stemma, colori, navigazione e ritorno alla collezione.
  * I percorsi delle immagini sono relativi a index.html.
  */
-import { $, $$, RM, hasG } from "./core.js";
+import { $, $$, RM } from "./core.js";
 import { PH, WORKS } from "./projects.js";
 import { track } from "./collection.js";
 import { setInert } from "./dialogs.js";
 import { closePlan } from "./navigation.js";
+import { initMuseumMotion } from "./museum-motion.js";
 
 /* ===================== MOSTRA MONOGRAFICA ===================== */
 var expo = $("#expo"),
@@ -15,6 +16,7 @@ var expo = $("#expo"),
 function openExpo(i) {
   // Una nuova scheda deve scollegare l'osservatore della galleria precedente.
   if (expo._cleanup) expo._cleanup();
+  if (expo._stopMotion) expo._stopMotion();
   var w = WORKS[i];
   var prev = (i - 1 + WORKS.length) % WORKS.length,
     next = (i + 1) % WORKS.length;
@@ -103,16 +105,8 @@ function openExpo(i) {
   setTimeout(function () {
     expo.focus();
   }, 50);
-  if (hasG && !RM) {
-    gsap.from($$(".expo-hero > *", expo), {
-      y: 40,
-      opacity: 0,
-      duration: 1.1,
-      stagger: 0.12,
-      ease: "power3.out",
-      delay: 0.45,
-    });
-  }
+  // Il dialogo è il contenitore di scorrimento delle sue animazioni.
+  expo._stopMotion = initMuseumMotion(expo, expo);
 }
 /** Unisce viste della divisa e fotografie in un unico elenco ordinato. */
 function allSlides(w) {
@@ -420,6 +414,7 @@ function chap(n, t, s, body) {
 /** Chiude la scheda e restituisce il focus all’opera di provenienza. */
 function closeExpo() {
   if (expo._cleanup) expo._cleanup();
+  if (expo._stopMotion) expo._stopMotion();
   expo.classList.remove("open");
   setInert(false);
   document.documentElement.style.overflow = "";

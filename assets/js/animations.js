@@ -2,7 +2,8 @@
  * Animazioni di ingresso e comparsa. Il contenuto resta accessibile senza GSAP e con movimento ridotto.
  * I percorsi delle immagini sono relativi a index.html.
  */
-import { $, $$, RM, hasG } from "./core.js";
+import { $$, RM, hasG } from "./core.js";
+import { initMuseumMotion } from "./museum-motion.js";
 
 /* Ingresso diretto: animazione hero senza schermata o attesa iniziale. */
 if (hasG && !RM) {
@@ -46,24 +47,5 @@ function heroIn(delay) {
 $$(".work").forEach(function (work) {
   work.classList.add("lit");
 });
-if (hasG && !RM) {
-  ScrollTrigger.config({ ignoreMobileResize: true });
-  $$(
-    ".room-head,.studio-intro,.phase,.work,.canvas-copy,.contact-grid",
-  ).forEach(function (el) {
-    gsap.from(el, {
-      y: 28,
-      opacity: 0,
-      duration: 0.85,
-      ease: "power3.out",
-      scrollTrigger: { trigger: el, start: "top 92%", once: true },
-    });
-  });
-  addEventListener("load", function () {
-    ScrollTrigger.refresh();
-  });
-  if (document.fonts && document.fonts.ready)
-    document.fonts.ready.then(function () {
-      ScrollTrigger.refresh();
-    });
-}
+// Un solo sistema di comparsa evita conflitti tra trasformazioni GSAP e native.
+initMuseumMotion(document.querySelector("main"));

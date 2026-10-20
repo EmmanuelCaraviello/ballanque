@@ -1,0 +1,26 @@
+/* Maschere dei titoli: il testo resta visibile quando JavaScript o il movimento sono disattivati. */
+.motion-word {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: bottom;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.motion-word-inner {
+  display: inline-block;
+}
+
+/* Le foto mantengono posizione e dimensioni anche durante lo svelamento. */
+.pthumb {
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-word-inner {
+    transform: none;
+  }
+  .grain,
+  .logo.lit {
+    animation: none;
+  }
+}
