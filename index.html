@@ -208,58 +208,25 @@
 </section>
 
 
-<!-- 10 COMMISSIONA -->
-<section class="room commission wrap" id="commissiona" data-room="09" data-name="Commissiona un'opera">
-  <div class="room-head"><span class="mono no">Sala 09</span><span class="mono muted">La sala vuota — Start a project</span></div>
-  <h2>Build your<br>identity.</h2>
-  <p class="muted" style="margin-top:14px;font-size:17px;max-width:46ch">Raccontaci la storia del tuo club. Mentre scrivi, la tua opera prende posto sulla parete.</p>
-  <div class="com-grid">
-    <div class="empty-room" id="emptyRoom">
-      <div class="empty-frame"><span class="wait" id="wait">Opera in attesa</span><div id="yourShirt" style="width:100%;display:grid;place-items:center;opacity:0;transition:opacity .8s"></div></div>
-      <div class="label">
-        <span class="mono muted">Nº 08 / Nuova acquisizione</span>
-        <span class="c" id="lbClub">Il tuo club</span>
-        <span class="t" id="lbTitle">Senza titolo</span>
-        <span class="mono muted" id="lbMeta">Città — Anno di fondazione</span>
-      </div>
-    </div>
-    <div>
-      <form class="card" id="comForm" novalidate>
-        <div class="field"><label class="mono muted" for="fClub">Nome del club *</label><input id="fClub" name="club" autocomplete="organization" placeholder="Es. Polisportiva San Rocco" required maxlength="80" aria-describedby="formErr"></div>
-        <div class="row2">
-          <div class="field"><label class="mono muted" for="fCity">Città / territorio</label><input id="fCity" name="city" placeholder="Es. Napoli" maxlength="60" autocomplete="address-level2"></div>
-          <div class="field"><label class="mono muted" for="fYear">Anno di fondazione</label><input id="fYear" name="year" inputmode="numeric" maxlength="4" placeholder="1923"></div>
+    <!-- CONTATTI -->
+    <section class="room commission wrap" id="commissiona" data-room="09" data-name="Contatti" aria-labelledby="contactTitle">
+      <div class="room-head"><span class="mono no">Sala 09</span><span class="mono muted">Contatti — Start a project</span></div>
+      <div class="contact-grid">
+        <div>
+          <h2 id="contactTitle">Build your<br>identity.</h2>
+          <p class="contact-intro">La prossima storia è quella del tuo club.</p>
         </div>
-        <div class="field"><span class="mono muted" id="colLbl">I vostri colori</span>
-          <div class="colors" role="group" aria-labelledby="colLbl">
-            <label class="mono muted" style="display:flex;align-items:center;gap:8px">Primo <input type="color" id="fC1" value="#0e6b5d"></label>
-            <label class="mono muted" style="display:flex;align-items:center;gap:8px">Secondo <input type="color" id="fC2" value="#c98a4b"></label>
+        <div class="contact-copy">
+          <p>Raccontaci da dove venite, cosa rappresentate e cosa vorreste portare in campo. Partiamo dalla vostra storia per costruire un'identità.</p>
+          <div class="contact-actions">
+            <a class="pill solid mono" href="mailto:collab@ballanque.com?subject=Un%20progetto%20per%20il%20nostro%20club" data-cursor="EMAIL">Scrivici via email ↗</a>
+            <a class="pill mono" href="https://www.instagram.com/ballanquefootball/" target="_blank" rel="noopener" data-cursor="INSTAGRAM">Parliamone su Instagram ↗</a>
           </div>
-        </div>
-        <div class="field"><label class="mono muted" for="fPat">Un segno del vostro territorio</label>
-          <select id="fPat"><option value="chain">Catena — la comunità che si tiene</option><option value="greca">Greca — muri, pietra, architettura</option><option value="diag">Righe diagonali — il fiume, la strada</option><option value="glyph">Numeri antichi — la storia, le date</option><option value="spots">Giaguaro — istinto e carattere</option></select>
-        </div>
-        <div class="field"><label class="mono muted" for="fStory">Raccontaci chi siete</label><textarea id="fStory" name="story" maxlength="1200" placeholder="Da dove venite, cosa rappresentate, cosa non deve mancare sulla maglia."></textarea></div>
-        <div class="field"><label class="mono muted" for="fContact">Contatto (email o telefono) *</label><input id="fContact" name="contact" autocomplete="email" placeholder="nome@club.it oppure +39 333 1234567" required maxlength="80" aria-describedby="formErr"></div>
-        <p class="privacy">I dati restano sul vostro dispositivo: il sito non li salva e non li invia da solo. Nel passo successivo scegliete voi se mandarci la scheda via email o Instagram. Li useremo solo per rispondere alla vostra richiesta.</p>
-        <p class="mono muted" id="formErr" role="alert" style="color:var(--ocher)"></p>
-        <button class="cta" type="submit" data-cursor="START"><span>Start a project</span><span>→</span></button>
-        <a class="enter" href="#collezione" data-cursor="WALK" style="margin-top:4px"><i></i>Explore the collection</a>
-      </form>
-      <div class="done" id="done" hidden>
-        <span class="mono" style="color:var(--ocher)">Scheda dell'opera pronta</span>
-        <p>La scheda è pronta, ma <strong>non è ancora stata inviata</strong>. Mandatecela per email (si apre il vostro programma di posta con il testo già scritto) oppure copiatela e scriveteci su Instagram.</p>
-        <pre id="sheet"></pre>
-        <div class="actions">
-          <a class="pill mono send-mail" id="mailBtn" href="mailto:collab@ballanque.com">Invia per email →</a>
-          <button class="pill mono" id="copyBtn" type="button">Copia la scheda</button>
-          <a class="pill mono" href="https://www.instagram.com/ballanquefootball/" target="_blank" rel="noopener">Apri @ballanquefootball →</a>
-          <button class="pill mono" id="editBtn" type="button">Modifica</button>
+          <a class="contact-email" href="mailto:collab@ballanque.com">collab@ballanque.com</a>
+          <p class="contact-note muted">Per iniziare, indicaci il nome del club e il tipo di progetto che hai in mente. Il link email apre il tuo programma di posta.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 <!-- 10 DAL CAMPO -->
 <section class="room field-room wrap" id="campo" data-room="10" data-name="Dal campo">

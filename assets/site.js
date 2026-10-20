@@ -2,59 +2,13 @@
 (function(){
 "use strict";
 var IMG=["assets/image-06.webp","assets/image-07.webp","assets/image-08.webp","assets/image-09.webp","assets/image-10.webp","assets/image-11.webp","assets/image-12.webp","assets/image-13.webp"];
-var CONTACT_EMAIL = "collab@ballanque.com"; /* destinatario delle richieste dal form */
 var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var hasG = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
 if(hasG) gsap.registerPlugin(ScrollTrigger);
 var imageRefresh=0;document.addEventListener("load",function(e){if(hasG&&e.target.tagName==="IMG"){clearTimeout(imageRefresh);imageRefresh=setTimeout(function(){ScrollTrigger.refresh()},150)}},true);
 var $ = function(s,c){return (c||document).querySelector(s)};
 var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
-var uid = 0;
-
-/* ===================== MAGLIA (SVG) ===================== */
-var BODY = "M140 30 Q200 74 260 30 L332 54 L396 142 L346 182 L320 160 L322 420 Q200 434 78 420 L80 160 L54 182 L4 142 L68 54 Z";
-function patternDef(id,type,c){
-  var a=c.accent, t=c.trim;
-  switch(type){
-    case "chain": return '<pattern id="'+id+'" width="34" height="22" patternUnits="userSpaceOnUse"><ellipse cx="9" cy="11" rx="8" ry="5" fill="none" stroke="'+t+'" stroke-width="2.2"/><ellipse cx="26" cy="11" rx="8" ry="5" fill="none" stroke="'+t+'" stroke-width="2.2"/><circle cx="9" cy="11" r="1.6" fill="'+t+'"/><circle cx="26" cy="11" r="1.6" fill="'+t+'"/></pattern>';
-    case "greca": return '<pattern id="'+id+'" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 34 H30 V6 H10 V26 H22 V14" fill="none" stroke="'+t+'" stroke-width="3"/></pattern>';
-    case "diag": return '<pattern id="'+id+'" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><rect width="9" height="28" fill="'+t+'"/><rect x="13" width="2" height="28" fill="'+a+'"/></pattern>';
-    case "glyph": return '<pattern id="'+id+'" width="44" height="44" patternUnits="userSpaceOnUse"><rect x="4" y="4" width="36" height="36" rx="7" fill="none" stroke="'+t+'" stroke-width="2"/><circle cx="14" cy="14" r="2.6" fill="'+t+'"/><circle cx="22" cy="14" r="2.6" fill="'+t+'"/><circle cx="30" cy="14" r="2.6" fill="'+t+'"/><rect x="11" y="22" width="22" height="4" fill="'+t+'"/><rect x="11" y="30" width="22" height="4" fill="'+t+'"/></pattern>';
-    case "spots": return '<pattern id="'+id+'" width="60" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="'+t+'" stroke-width="3.2" stroke-linecap="round"><path d="M10 14 q6 -8 13 -1 M8 22 q2 7 9 6 M26 18 q3 6 -3 10"/><path d="M38 40 q6 -8 13 -1 M36 48 q2 7 9 6 M54 44 q3 6 -3 10"/></g><circle cx="16" cy="20" r="2.4" fill="'+t+'"/><circle cx="44" cy="46" r="2.4" fill="'+t+'"/></pattern>';
-  }
-  return "";
-}
 function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function shirt(o){
-  var id="s"+(++uid), p=id+"p", cl=id+"c", tx=id+"t";
-  var initials=esc((o.crest||"").slice(0,3).toUpperCase());
-  var bandY = o.pattern==="chain"||o.pattern==="greca" ? true : false;
-  var patFill = bandY
-    ? '<rect x="0" y="190" width="400" height="120" fill="url(#'+p+')" opacity=".95"/>'
-    : '<rect x="0" y="0" width="400" height="440" fill="url(#'+p+')" opacity="'+(o.pattern==="spots"?.55:.75)+'"/>';
-  return '<svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Maglia '+esc(o.club)+'">'+
-  '<defs>'+patternDef(p,o.pattern,o)+
-  '<clipPath id="'+cl+'"><path d="'+BODY+'"/></clipPath>'+
-  '<filter id="'+tx+'" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>'+
-  '<linearGradient id="'+id+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>'+
-  '</defs>'+
-  '<path d="'+BODY+'" fill="'+o.base+'"/>'+
-  '<g clip-path="url(#'+cl+')">'+patFill+
-    '<rect width="400" height="440" fill="url(#'+id+'g)"/>'+
-    '<rect width="400" height="440" fill="#000" filter="url(#'+tx+')"/>'+
-    '<path d="M54 182 L4 142 L68 54 L80 160 Z" fill="'+o.base+'"/><path d="M346 182 L396 142 L332 54 L320 160 Z" fill="'+o.base+'"/>'+
-    '<path d="M10 150 L50 178" stroke="'+o.trim+'" stroke-width="9"/><path d="M390 150 L350 178" stroke="'+o.trim+'" stroke-width="9"/>'+
-    '<path d="M78 412 Q200 426 322 412" stroke="'+o.trim+'" stroke-width="6" fill="none"/>'+
-    '<path d="M80 160 L78 420 M320 160 L322 420" stroke="#000" stroke-opacity=".25" stroke-width="1.4" stroke-dasharray="3 4"/>'+
-    '<path d="M68 54 L80 160 M332 54 L320 160" stroke="#000" stroke-opacity=".22" stroke-width="1.2" stroke-dasharray="3 4"/>'+
-  '</g>'+
-  '<path d="M140 30 Q200 74 260 30 Q248 26 238 24 Q200 52 162 24 Q152 26 140 30 Z" fill="'+o.trim+'"/>'+
-  '<path d="M162 24 Q200 52 238 24" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/>'+
-  '<g transform="translate(250 118)"><path d="M0 0 H40 V26 Q40 44 20 52 Q0 44 0 26 Z" fill="'+o.accent+'" stroke="'+o.trim+'" stroke-width="2.4"/>'+
-  '<text x="20" y="31" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="800" font-size="'+(initials.length>2?10:13)+'" fill="'+o.base+'">'+initials+'</text></g>'+
-  '<text x="200" y="404" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="2" fill="'+o.trim+'" opacity=".8">'+esc((o.motto||"").slice(0,40))+'</text>'+
-  '</svg>';
-}
 
 /* ===================== COLLEZIONE: DATI ===================== */
 var PH={CRC:"assets/image-14.webp",CR:"assets/image-15.webp",B1:"assets/image-16.webp",B2:"assets/image-17.webp",B3:"assets/image-18.webp",B4:"assets/image-19.webp",B5:"assets/image-20.webp",B6:"assets/image-21.webp",C1:"assets/image-22.webp",C2:"assets/image-23.webp",C3:"assets/image-24.webp",C4:"assets/image-25.webp",C5:"assets/image-26.webp",C6:"assets/image-27.webp",C7:"assets/image-28.webp",C8:"assets/image-29.webp",A1:"assets/image-30.webp",A2:"assets/image-31.webp",L47:"assets/image-32.webp",L48:"assets/image-33.webp",L49:"assets/image-34.webp",L50:"assets/image-35.webp",L51:"assets/image-36.webp",L52:"assets/image-37.webp",L53:"assets/image-38.webp",L54:"assets/image-39.webp",L55:"assets/image-40.webp",L56:"assets/image-41.webp",L57:"assets/image-42.webp",L58:"assets/image-43.webp",L59:"assets/image-44.webp",L60:"assets/image-45.webp",L61:"assets/image-46.webp",L65:"assets/image-47.webp",O1:"assets/image-48.webp",O2:"assets/image-49.webp",O3:"assets/image-50.webp"};
@@ -157,7 +111,7 @@ window.addEventListener("scroll",function(){nav.classList.toggle("solid",window.
 /* coordinate della pianta orizzontale (420×300); su telefono la pianta ruota in verticale */
 var PLAN=[["00",10,10,90,90,"Ingresso"],["01",100,10,80,90,"Foyer"],["02",180,10,90,90,"Tela"],["03",270,10,140,140,"Collezione"],
  ["04",180,100,90,100,"Manifesto"],["05",100,100,80,100,"Studio"],["06",10,100,90,100,"Archivio"],["07",10,200,90,90,"People"],
- ["08",100,200,170,90,"Curatore"],["09",270,150,140,60,"Sala vuota"],["10",270,210,140,45,"Dal campo"],["11",270,255,140,40,"Uscita"]];
+ ["08",100,200,170,90,"Curatore"],["09",270,150,140,60,"Contatti"],["10",270,210,140,45,"Dal campo"],["11",270,255,140,40,"Uscita"]];
 var svg=$("#planSvg"), list=$("#planList"), route=$("#planRoute"), NS="http://www.w3.org/2000/svg";
 PLAN.forEach(function(p){
   var r=rooms.find(function(x){return x.dataset.room===p[0]}); if(!r)return;
@@ -383,7 +337,7 @@ var phaseIO=new IntersectionObserver(function(es){es.forEach(function(e){e.targe
 $$(".phase").forEach(function(p){phaseIO.observe(p)});
 
 /* ===================== SOGLIE TRA LE SALE ===================== */
-[["collezione","03","The Collection"],["persone","07","People"],["curatore","08","Il Curatore"],["commissiona","09","La sala vuota"],["campo","10","Dal campo"]].forEach(function(d){
+[["collezione","03","The Collection"],["persone","07","People"],["curatore","08","Il Curatore"],["commissiona","09","Contatti"],["campo","10","Dal campo"]].forEach(function(d){
   var sec=$("#"+d[0]); if(!sec)return;
   var el=document.createElement("div"); el.className="door wrap"; el.setAttribute("aria-hidden","true");
   el.innerHTML='<i></i>';
@@ -395,65 +349,8 @@ $$(".door").forEach(function(d){RM?d.classList.add("in"):doorIO.observe(d)});
 /* ===================== STUDIO: visual ===================== */
 $("#vis5").innerHTML='<img src="'+PH.L52+'" alt="Giocatori dell\'Atletico BMG entrano in campo" loading="lazy" decoding="async">';
 $("#vis2").innerHTML='<svg viewBox="0 0 200 120"><g fill="none" stroke="#8a3324" stroke-width="1.2">'+[0,1,2,3,4,5,6].map(function(k){return '<path d="M0 '+(20+k*14)+' C 50 '+(5+k*14)+', 80 '+(40+k*12)+', 120 '+(18+k*14)+' S 180 '+(30+k*13)+', 200 '+(14+k*14)+'"/>'}).join("")+'</g><circle cx="122" cy="52" r="5" fill="#0e6b5d"/><text x="130" y="48" font-family="IBM Plex Mono" font-size="7" fill="#1a1311">IL CAMPO</text></svg>';
-$("#vis4").innerHTML=shirt({base:"#0e6b5d",trim:"#c98a4b",accent:"#c98a4b",pattern:"greca",crest:"…",motto:"PROVA 03"}).replace('<svg ','<svg style="filter:drop-shadow(0 18px 24px rgba(26,19,17,.25))" ');
+$("#vis4").innerHTML='<img src="assets/image-06.webp" alt="Progetto Ballanqué: divisa home Atletico BMG" loading="lazy" decoding="async">';
 
-
-/* ===================== COMMISSIONA ===================== */
-var f={club:$("#fClub"),city:$("#fCity"),year:$("#fYear"),c1:$("#fC1"),c2:$("#fC2"),pat:$("#fPat"),story:$("#fStory"),contact:$("#fContact")};
-var titles={chain:"Il legame",greca:"Pietra e confine",diag:"Il corso del fiume",glyph:"Numeri antichi",spots:"Istinto"};
-function hexOk(h){return /^#[0-9a-f]{6}$/i.test(h)?h:"#0e6b5d"}
-function hexA(h,a){var v=parseInt(h.slice(1),16);return "rgba("+(v>>16&255)+","+(v>>8&255)+","+(v&255)+","+a+")"}
-function initialsOf(s){return s.split(/\s+/).filter(function(w){return w.length>2||/^[A-Z]/.test(w)}).map(function(w){return w[0]}).join("").slice(0,3)||s.slice(0,2)}
-var rT;
-function renderYours(){
-  var club=f.club.value.trim();
-  $("#lbClub").textContent=club||"Il tuo club";
-  $("#lbTitle").textContent=titles[f.pat.value]+", "+(new Date().getFullYear()+1);
-  $("#lbMeta").textContent=(f.city.value.trim()||"Città")+" — "+(f.year.value.trim()?"Fondato nel "+f.year.value.trim():"Anno di fondazione");
-  $("#emptyRoom").style.setProperty("--glow",hexA(f.c2.value,.3));
-  clearTimeout(rT); rT=setTimeout(function(){
-    var y=$("#yourShirt");
-    y.innerHTML=shirt({club:club,base:hexOk(f.c1.value),trim:hexOk(f.c2.value),accent:hexOk(f.c2.value),pattern:f.pat.value,crest:club?initialsOf(club).toUpperCase():"?",motto:(f.city.value||"").toUpperCase()});
-    y.firstChild.style.width="72%";
-    var any=club||f.city.value||f.year.value||f.story.value;
-    y.style.opacity=any?1:0; $("#wait").style.opacity=any?0:1;
-  },120);
-}
-Object.keys(f).forEach(function(k){f[k].addEventListener("input",renderYours)});
-f.year.addEventListener("input",function(){f.year.value=f.year.value.replace(/\D/g,"").slice(0,4)});
-renderYours();
-$("#comForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  var err=$("#formErr");
-  f.club.removeAttribute("aria-invalid");f.contact.removeAttribute("aria-invalid");
-  if(!f.club.value.trim()){err.textContent="Scrivete il nome del club: è il titolo dell'opera.";f.club.setAttribute("aria-invalid","true");f.club.focus();return}
-  var ct=f.contact.value.trim();
-  var okMail=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ct), okTel=/^\+?[\d\s().-]{7,20}$/.test(ct)&&ct.replace(/\D/g,"").length>=7;
-  if(!ct){err.textContent="Lasciate un contatto, così possiamo rispondervi.";f.contact.setAttribute("aria-invalid","true");f.contact.focus();return}
-  if(!okMail&&!okTel){err.textContent="Il contatto non sembra un'email o un numero di telefono valido.";f.contact.setAttribute("aria-invalid","true");f.contact.focus();return}
-  err.textContent="";
-  $("#sheet").textContent=
-"SCHEDA OPERA — BALLANQUÉ\n"+
-"Club: "+f.club.value.trim()+"\n"+
-"Città / territorio: "+(f.city.value.trim()||"—")+"\n"+
-"Fondazione: "+(f.year.value.trim()||"—")+"\n"+
-"Colori: "+f.c1.value+" + "+f.c2.value+"\n"+
-"Segno del territorio: "+f.pat.options[f.pat.selectedIndex].text+"\n"+
-"La nostra storia: "+(f.story.value.trim()||"—")+"\n"+
-"Contatto: "+f.contact.value.trim()+"\n"+
-"Biglietto visitatore: "+ticket;
-  $("#mailBtn").href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Nuovo progetto — "+f.club.value.trim())+"&body="+encodeURIComponent($("#sheet").textContent);
-  $("#comForm").hidden=true; $("#done").hidden=false; $("#done").setAttribute("tabindex","-1"); $("#done").focus({preventScroll:false});
-  if(hasG&&!RM) gsap.fromTo("#yourShirt",{scale:.94},{scale:1,duration:1.2,ease:"power3.out"});
-  if($("#lbTitle").textContent.indexOf("scheda pronta")<0)$("#lbTitle").textContent=$("#lbTitle").textContent+" — scheda pronta";
-});
-$("#editBtn").addEventListener("click",function(){$("#done").hidden=true;$("#comForm").hidden=false;renderYours();f.club.focus()});
-$("#mailBtn").addEventListener("click",function(){toast("Si apre il vostro programma di posta: premete Invia per completare")});
-$("#copyBtn").addEventListener("click",function(){
-  var txt=$("#sheet").textContent;
-  try{navigator.clipboard.writeText(txt).then(function(){toast("Scheda copiata")},sel)}catch(e){sel()}
-  function sel(){var r=document.createRange();r.selectNodeContents($("#sheet"));var s=getSelection();s.removeAllRanges();s.addRange(r);toast("Testo selezionato: copiatelo con Ctrl/Cmd + C")}
-});
 
 /* Ingresso diretto: animazione hero senza schermata o attesa iniziale. */
 if(hasG&&!RM){ heroIn(0) }
@@ -562,13 +459,6 @@ if(hasG&&!RM){
 
 
   fitFinale();
-
-  /* commissione: magnetismo della CTA */
-  var cta=$(".cta");
-  if(matchMedia("(pointer:fine)").matches){
-    cta.addEventListener("mousemove",function(e){var r=cta.getBoundingClientRect();gsap.to(cta,{x:(e.clientX-r.left-r.width/2)*.08,y:(e.clientY-r.top-r.height/2)*.25,duration:.4})});
-    cta.addEventListener("mouseleave",function(){gsap.to(cta,{x:0,y:0,duration:.6,ease:"elastic.out(1,.5)"})});
-  }
 
   /* sezioni generiche */
   $$(".room-head").forEach(function(h){gsap.from(h,{opacity:0,y:20,duration:.9,scrollTrigger:{trigger:h,start:"top 88%"}})});
