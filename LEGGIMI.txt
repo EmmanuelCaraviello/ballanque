@@ -1,0 +1,29 @@
+BALLANQUÉ — COPIA OTTIMIZZATA
+
+COME APRIRLA
+Estrai tutto il pacchetto ZIP e apri index.html. Mantieni la cartella assets accanto a index.html: contiene immagini, CSS e JavaScript necessari al sito.
+Per pubblicarlo, carica l'intero contenuto di questa cartella sul servizio di hosting. Il sito online non è stato modificato.
+
+INTERVENTI
+- Mantenuti testi, sezioni, identità grafica, font e animazioni.
+- Estratte e deduplicate le immagini incorporate nell'HTML.
+- Compressione senza perdita quando riduce il peso; mantenute le dimensioni e i pixel delle immagini originali.
+- Separati CSS e JavaScript per renderli memorizzabili nella cache.
+- Caricamento differito delle immagini sotto la prima schermata; priorità alta all'immagine iniziale.
+- Script caricati senza bloccare l'analisi della pagina, conservando l'ordine delle dipendenze.
+- Il cursore animato smette di richiedere fotogrammi quando il mouse è fermo; rispetta la preferenza per movimento ridotto.
+- Aggiornamento dello scorrimento animato dopo i filtri della collezione e il caricamento delle immagini.
+- Corretto il trasferimento del focus quando si sceglie una sezione dalla pianta.
+- Aggiunta l'immagine social mancante, ricavata dall'immagine iniziale del sito.
+
+PESO MISURATO (senza dipendenze esterne)
+Originale: HTML unico di 6.929.681 byte.
+Copia: HTML di circa 22 KB; sito completo di circa 5,3 MB, escluso questo documento.
+La riduzione complessiva è circa il 24%. Il peso HTML inferiore non equivale a una velocità 300 volte maggiore: il beneficio principale è poter caricare le immagini quando servono e riutilizzare le risorse dalla cache.
+
+VERIFICHE E LIMITI
+Controllati sintassi JavaScript, riferimenti ai file locali, collegamenti interni, conservazione degli identificatori strutturali e identità dei pixel di tutte le immagini estratte.
+La prova visiva e interattiva desktop/mobile non è stata completata: il browser dell'ambiente non ha consentito l'accesso alla copia locale. Prima di sostituire il sito pubblicato occorre verificare la copia su desktop e telefono, inclusi pianta, filtri, gallerie e modulo. Non sono disponibili misure Lighthouse o tempi di caricamento prima/dopo.
+L'indirizzo fornito, ballanque.netfly.app, non è risultato raggiungibile dallo strumento di consultazione. Non è stata confermata la corrispondenza tra questa copia e il sito online.
+Google Fonts e GSAP restano risorse esterne come nell'originale.
+Il modulo resta un generatore di scheda con apertura del programma di posta: non invia automaticamente email a un server. L'invio effettivo dipende dal programma di posta del visitatore.
