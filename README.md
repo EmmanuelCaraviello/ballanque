@@ -17,6 +17,7 @@ assets/
     brand.css              Font ufficiali e regole finali del brand
     responsive.css         Telefono, iPad, touch e gallerie adattive
     motion.css             Maschere dei titoli e supporto al movimento ridotto
+    museum.css             Parete espositiva e ambienti responsive del Museo
     studio.css             Composizione dello Studio e controlli del segno animato
   js/
     main.js                Punto di ingresso dei moduli JavaScript

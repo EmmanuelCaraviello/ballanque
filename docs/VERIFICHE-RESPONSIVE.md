@@ -54,3 +54,17 @@ Sequenza di diciotto secondi verificata in Chrome a 390 × 844, 834 × 1194 e
 nessun overflow orizzontale e nessun errore JavaScript.
 Controllate anche quattro catture della scena: sagoma, strisce, pittura e risultato
 completo. Le prove sono simulate nel browser, non su dispositivi fisici.
+
+
+## Parete espositiva — 21 ottobre 2026
+
+Verifiche Chrome a 320 × 740, 390 × 844, 834 × 1194, 1194 × 834 e 1440 × 1000:
+menu, filtri, apertura scheda, galleria, ridimensionamento e lente. Nessun overflow
+di pagina o dialogo e nessun errore JavaScript rilevato.
+Controllate visivamente le composizioni desktop e telefono. Le fotografie di contesto
+sono quelle già associate ai progetti, non nuovi materiali o contenuti inventati.
+
+Con animazioni attive, a 390, 834 e 1440 px: aperte tutte e sette le schede,
+verificati filtro Away, apertura con Invio, chiusura con Esc e passaggio al movimento
+ridotto. Nessun overflow o errore JavaScript rilevato. Prove su finestre simulate,
+non su iPhone/iPad fisici.

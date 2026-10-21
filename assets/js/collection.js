@@ -1,78 +1,81 @@
 /**
- * Crea le opere del Museo e applica i filtri. Le schede complete sono gestite da exhibition.js.
- * I percorsi delle immagini sono relativi a index.html.
+ * Parete espositiva: un progetto per ambiente, con accesso alla scheda completa.
+ * Dati e fotografie rimangono nell'archivio projects.js. Nessun controllo dello scroll.
  */
 import { $, $$, hasG } from "./core.js";
-import { WORKS } from "./projects.js";
+import { WORKS, PH } from "./projects.js";
 
-/* collezione */
-var track = $("#track");
-/** Costruisce il riquadro con fronte e, quando disponibile, retro della divisa. */
-function kitFrame(w) {
-  return (
-    '<div class="frame"><div class="kit' +
-    (w.isPhoto ? " ph" : "") +
-    '"><img class="f' +
-    (w.back ? " has-b" : "") +
-    '" src="' +
-    w.front +
-    '" alt="' +
-    w.club +
-    ", " +
-    w.title +
-    ', fronte" loading="lazy" decoding="async">' +
-    (w.back
-      ? '<img class="b" src="' +
-        w.back +
-        '" alt="' +
-        w.club +
-        ", " +
-        w.title +
-        ', retro" loading="lazy" decoding="async">'
-      : "") +
-    "</div></div>"
+const track = $("#track");
+const status = document.createElement("p");
+status.className = "museum-status mono";
+status.setAttribute("role", "status");
+status.setAttribute("aria-live", "polite");
+$("#filters").after(status);
+
+/** Protegge gli attributi e il testo quando i progetti vengono aggiornati in futuro. */
+function escape(value) {
+  return String(value).replace(
+    /[&<>"']/g,
+    (char) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      })[char],
   );
 }
-WORKS.forEach(function (w, i) {
-  var b = document.createElement("button");
-  b.type = "button";
-  b.className = "work " + w.size + " " + (w.cls || "");
-  b.dataset.i = i;
-  b.dataset.tag = w.tag;
-  b.dataset.cursor = "EXPLORE";
-  b.setAttribute("aria-label", "Apri la mostra: " + w.club + ", " + w.title);
-  b.innerHTML =
-    kitFrame(w) +
-    '<div class="label"><span class="mono muted">' +
-    w.n +
-    " / " +
-    String(WORKS.length).padStart(2, "0") +
-    "</span>" +
-    (i === 0 || WORKS[i - 1].club !== w.club
-      ? '<span class="c">' + w.club + "</span>"
-      : '<span class="c">' + w.club + "</span>") +
-    '<span class="t">' +
-    w.title +
-    '</span><span class="note" style="margin-top:8px">' +
-    w.phrase +
-    "</span></div>";
-  track.appendChild(b);
+
+WORKS.forEach(function (work, index) {
+  const button = document.createElement("button");
+  const photo = work.photos?.[0];
+  button.type = "button";
+  button.className = "work museum-exhibit";
+  button.dataset.i = index;
+  button.dataset.tag = work.tag;
+  button.dataset.cursor = "ESPLORA";
+  button.setAttribute(
+    "aria-label",
+    "Esplora il progetto: " + work.club + ", " + work.title,
+  );
+  button.innerHTML = `
+    <span class="museum-index mono" aria-hidden="true">${escape(work.n)} / ${String(WORKS.length).padStart(2, "0")} <span>Ballanqué · Archivio dei progetti</span></span>
+    <span class="museum-composition">
+      <span class="museum-echo" aria-hidden="true">${escape(work.n)}</span>
+      <span class="museum-piece"><img src="${escape(work.front)}" alt="${escape(work.club + ", " + work.title + ", fronte")}" loading="lazy" decoding="async"></span>
+      ${photo && PH[photo[0]] ? `<span class="museum-detail" aria-hidden="true"><img src="${escape(PH[photo[0]])}" alt="" loading="lazy" decoding="async"><span class="mono">Dal campo</span></span>` : ""}
+    </span>
+    <span class="museum-caption">
+      <span class="museum-category mono">${escape(work.title)}</span>
+      <span class="museum-club">${escape(work.club)}</span>
+      <span class="museum-phrase">${escape(work.phrase)}</span>
+      <span class="museum-story">${escape(work.story)}</span>
+      <span class="museum-open mono">Esplora il progetto <span aria-hidden="true">↗</span></span>
+    </span>`;
+  track.appendChild(button);
 });
 
-/* Filtri della collezione: nessuno spostamento forzato della pagina. */
-$$("[data-f]").forEach(function (b) {
-  b.addEventListener("click", function () {
-    $$("[data-f]").forEach(function (x) {
-      x.setAttribute("aria-pressed", String(x === b));
-    });
-    $$(".work").forEach(function (w) {
-      w.hidden = !(
-        b.dataset.f === "all" ||
-        (" " + w.dataset.tag + " ").indexOf(" " + b.dataset.f + " ") > -1
+/** Filtra gli ambienti senza cambiare ordine, indice originale o posizione dello scroll. */
+function updateStatus() {
+  const count = $$(".work:not([hidden])", track).length;
+  status.textContent =
+    count + (count === 1 ? " progetto esposto" : " progetti esposti");
+}
+$$("[data-f]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    $$("[data-f]").forEach((item) =>
+      item.setAttribute("aria-pressed", String(item === button)),
+    );
+    $$(".work", track).forEach(function (work) {
+      work.hidden = !(
+        button.dataset.f === "all" ||
+        work.dataset.tag.split(" ").includes(button.dataset.f)
       );
     });
+    updateStatus();
     if (hasG) ScrollTrigger.refresh();
   });
 });
-
+updateStatus();
 export { track };

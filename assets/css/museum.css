@@ -1,0 +1,295 @@
+/* Parete espositiva: ambienti editoriali in sequenza, senza sezioni fissate allo scroll. */
+.museum .collection {
+  background: var(--bone);
+  color: var(--ink);
+  --muted: #625449;
+  --line: rgba(38, 29, 24, 0.2);
+  overflow: clip;
+}
+.collection .room-head {
+  border-color: var(--line);
+}
+.collection .coll-top h2 {
+  font-size: clamp(42px, 7vw, 110px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+.collection .coll-top h2 em {
+  display: block;
+  font-size: clamp(17px, 2vw, 25px);
+  font-family: var(--f-mono);
+  font-style: normal;
+  letter-spacing: -0.02em;
+  margin-top: 22px;
+  color: var(--clay);
+}
+.collection .museum-intro {
+  margin-top: 28px;
+  max-width: 55ch;
+}
+.collection .filters .pill {
+  border-color: rgba(38, 29, 24, 0.3);
+  color: var(--ink);
+}
+.collection .filters .pill[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bone);
+}
+.collection .filters .pill:focus-visible,
+.collection .work:focus-visible {
+  outline-color: var(--jade);
+}
+.museum-status {
+  color: var(--muted);
+  margin: 22px 0 0;
+}
+.collection .wall-stage {
+  padding: 0;
+}
+.collection:not(.archive) .track {
+  display: block;
+  width: 100%;
+  padding: 0;
+  transform: none;
+}
+/* Il bottone è l'intero ambiente: tastiera, tocco e mouse aprono la medesima scheda. */
+.collection .work.museum-exhibit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(24px, 5vw, 88px);
+  width: 100%;
+  min-height: min(860px, 92svh);
+  margin: 0;
+  padding: 28px max(var(--gutter), calc((100vw - 1440px) / 2)) 70px;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.museum-index {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--clay);
+  padding-bottom: 24px;
+}
+.museum-composition {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 480px;
+}
+/* Numero monumentale e linea di sospensione: riferimenti discreti lungo la visita. */
+.museum-echo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(110px, 20vw, 290px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: rgba(138, 50, 38, 0.09);
+  z-index: -1;
+}
+.museum-composition::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  top: 0;
+  bottom: 8%;
+  left: 50%;
+  background: linear-gradient(var(--clay), transparent);
+  opacity: 0.2;
+  z-index: -1;
+}
+.museum-piece {
+  display: block;
+  width: 78%;
+  height: clamp(350px, 53vh, 580px);
+  position: relative;
+  z-index: 1;
+}
+.museum-piece img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 18px rgba(38, 29, 24, 0.15));
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.museum-detail {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 3%;
+  width: 25%;
+  transform: rotate(5deg);
+  z-index: 2;
+  background: var(--chalk);
+  padding: 7px 7px 11px;
+  box-shadow: 0 10px 30px rgba(38, 29, 24, 0.12);
+}
+.museum-detail img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.museum-detail .mono {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding-top: 9px;
+  color: var(--ink);
+}
+.museum-caption {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 460px;
+  padding: 20px 0;
+}
+.museum-category {
+  color: var(--clay);
+  margin-bottom: 20px;
+}
+.museum-club {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(38px, 5vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  overflow-wrap: anywhere;
+}
+.museum-phrase {
+  font-family: var(--f-mono);
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.4;
+  margin-top: 28px;
+}
+.museum-story {
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.museum-open {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--ink);
+  padding: 18px 0;
+  margin-top: 24px;
+  color: var(--jade);
+}
+.museum-open > span {
+  font-size: 28px;
+  line-height: 1;
+  transition: transform 0.5s;
+}
+/* Alternanza della parete: varia la composizione, mantenendo identico l'ordine di lettura. */
+.collection .museum-exhibit:nth-child(even) .museum-composition {
+  grid-column: 2;
+  grid-row: 2;
+}
+.collection .museum-exhibit:nth-child(even) .museum-caption {
+  grid-column: 1;
+  grid-row: 2;
+}
+@media (hover: hover) and (pointer: fine) {
+  .museum-exhibit:hover .museum-piece img {
+    transform: translateY(-9px) rotate(-1deg);
+  }
+  .museum-exhibit:hover .museum-open > span {
+    transform: translate(4px, -4px);
+  }
+}
+@media (max-width: 1000px) {
+  .collection .work.museum-exhibit {
+    min-height: 680px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 25px;
+  }
+  .museum-composition {
+    min-height: 400px;
+  }
+  .museum-piece {
+    width: 93%;
+    height: 410px;
+  }
+  .museum-detail {
+    width: 29%;
+    bottom: 2%;
+  }
+}
+@media (max-width: 600px) {
+  .collection .work.museum-exhibit {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: 0;
+    padding-bottom: 44px;
+  }
+  .museum-index {
+    width: 100%;
+    font-size: 10px;
+    padding-bottom: 14px;
+  }
+  .museum-index > span {
+    max-width: 155px;
+    text-align: right;
+  }
+  .museum-composition {
+    width: 100%;
+    min-height: 350px;
+  }
+  .museum-echo {
+    font-size: 160px;
+  }
+  .museum-piece {
+    width: 78%;
+    height: 340px;
+  }
+  .museum-detail {
+    width: 25%;
+    right: 3%;
+    bottom: 6%;
+  }
+  .museum-caption {
+    width: 100%;
+    max-width: none;
+    padding: 26px 0 0;
+  }
+  .museum-category {
+    margin-bottom: 12px;
+  }
+  .museum-club {
+    font-size: clamp(36px, 10vw, 54px);
+  }
+  .museum-phrase {
+    margin-top: 18px;
+  }
+  .museum-story {
+    font-size: 14px;
+  }
+  .museum-open {
+    margin-top: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .museum-piece img,
+  .museum-open > span {
+    transition: none;
+  }
+  .museum-exhibit:hover .museum-piece img,
+  .museum-exhibit:hover .museum-open > span {
+    transform: none;
+  }
+}

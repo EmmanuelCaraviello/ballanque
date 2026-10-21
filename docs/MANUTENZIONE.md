@@ -107,3 +107,17 @@ Verificare le larghezze di telefono, iPad verticale/orizzontale e desktop.
 Controllare anche la preferenza di movimento ridotto.
 Includere nel commit soltanto i file dell'intervento, preservando modifiche
 locali non correlate e cancellazioni preesistenti.
+
+
+## Parete espositiva del Museo
+
+`collection.js` costruisce sette ambienti da WORKS. Ogni ambiente è un bottone
+con indice originale `data-i`: `exhibition.js` continua ad aprire la scheda giusta
+anche dopo un filtro. Il fronte resta visibile; retro e varianti sono nella scheda.
+La fotografia di contesto è la prima foto già associata al progetto in PH.
+`museum.css`, caricato per ultimo, definisce la parete crema, l'alternanza desktop
+e la lettura verticale su telefono. Non modifica i colori delle divise.
+`museum-motion.js` anima separatamente maglia, didascalia e foto con ingressi
+finiti di 1,5–1,8 secondi. Nessun blocco dello scroll o cambio automatico di progetto.
+Senza animazioni tutti i contenuti restano visibili; il movimento ridotto interrompe
+anche gli ingressi in corso. I filtri comunicano il numero di progetti esposti.

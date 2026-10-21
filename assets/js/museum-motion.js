@@ -77,6 +77,42 @@ export function initMuseumMotion(container, scroller = null) {
             1000,
           );
         });
+    } else if (kind === "exhibit") {
+      // La maglia, la didascalia e la foto entrano separatamente e con tempi leggibili.
+      const piece = element.querySelector(".museum-piece");
+      const caption = element.querySelector(".museum-caption");
+      const detail = element.querySelector(".museum-detail");
+      animate(
+        piece,
+        [
+          {
+            opacity: 0,
+            transform: "translateY(65px) rotate(-5deg) scale(.93)",
+          },
+          { opacity: 1, transform: "translateY(0) rotate(0) scale(1)" },
+        ],
+        0,
+        1800,
+      );
+      animate(
+        caption,
+        [
+          { opacity: 0, transform: "translateY(40px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        170,
+        1500,
+      );
+      if (detail)
+        animate(
+          detail,
+          [
+            { opacity: 0, transform: "translateY(45px) rotate(-4deg)" },
+            { opacity: 1, transform: "translateY(0) rotate(5deg)" },
+          ],
+          380,
+          1700,
+        );
     } else if (kind === "photo") {
       animate(
         element,
@@ -135,7 +171,8 @@ export function initMuseumMotion(container, scroller = null) {
     "#studioTitle, #collezione .coll-top h2, #contactTitle, #expoTitle, .chap h3, .expo-end h3",
     "title",
   );
-  register(".work, .expo-hero .viewer", "work");
+  register(".museum-exhibit", "exhibit");
+  register(".expo-hero .viewer", "work");
   register(".pthumb", "photo");
   register(
     ".room-head, .studio-copy, .phase, .museum-intro, .contact-copy, .chap > div:last-child",
