@@ -34,7 +34,6 @@ WORKS.forEach(function (work, index) {
   button.className = "work museum-exhibit";
   button.dataset.i = index;
   button.dataset.tag = work.tag;
-  button.dataset.cursor = "ESPLORA";
   button.setAttribute(
     "aria-label",
     "Esplora il progetto: " + work.club + ", " + work.title,

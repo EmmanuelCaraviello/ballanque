@@ -338,9 +338,6 @@
     min-height: 44px;
     touch-action: manipulation;
   }
-  .cursor {
-    display: none;
-  }
 }
 
 /* In orizzontale non si forza un'intera schermata dentro un'altezza troppo bassa. */

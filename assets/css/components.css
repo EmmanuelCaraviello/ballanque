@@ -1709,51 +1709,6 @@ body.guide .note {
   border-color: rgba(235, 218, 192, 0.5);
 }
 
-/* ---------- CURSORE ---------- */
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 120;
-  pointer-events: none;
-  width: 10px;
-  height: 10px;
-  margin: -5px 0 0 -5px;
-  border-radius: 50%;
-  background: var(--ocher);
-  display: grid;
-  place-items: center;
-  transition:
-    width 0.35s,
-    height 0.35s,
-    margin 0.35s,
-    background 0.35s;
-  mix-blend-mode: normal;
-}
-.cursor b {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--ink);
-  opacity: 0;
-  transition: opacity 0.25s;
-  font-weight: 500;
-}
-.cursor.big {
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
-  background: rgba(235, 218, 192, 0.92);
-}
-.cursor.big b {
-  opacity: 1;
-}
-@media (hover: none), (pointer: coarse) {
-  .cursor {
-    display: none;
-  }
-}
-
 .toast {
   position: fixed;
   left: 50%;

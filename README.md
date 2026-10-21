@@ -28,7 +28,6 @@ assets/
     navigation.js          Menu e collegamenti alle sezioni
     dialogs.js             Focus e accessibilità dei dialoghi
     lens.js                Ingrandimento manuale dei dettagli della maglia
-    cursor.js              Cursore decorativo per il mouse
     animations.js          Animazioni di ingresso e comparsa
     museum-motion.js       Titoli, opere e fotografie che compaiono scorrendo
     studio.js              Tempi, pausa e accessibilità del racconto dello Studio

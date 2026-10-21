@@ -4,7 +4,6 @@
  * Usare un server locale (Go Live): i moduli ES non vanno aperti tramite file://.
  */
 import "./navigation.js";
-import "./cursor.js";
 import "./collection.js";
 import "./exhibition.js";
 import "./lens.js";

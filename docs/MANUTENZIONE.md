@@ -9,7 +9,7 @@
 - **Schede, fotografie e carosello:** `exhibition.js`.
 - **Filtri del Museo:** `collection.js`.
 - **Animazioni:** ingresso in `animations.js`, sequenze del Museo in `museum-motion.js`,
-  maschere in `motion.css`; cursore separato in `cursor.js`.
+  maschere in `motion.css`.
 - **Menu e accessibilità:** `navigation.js` e `dialogs.js`.
 - **Segno animato dello Studio:** `studio.js`, composizione e controlli in `studio.css`.
 
@@ -121,3 +121,6 @@ e la lettura verticale su telefono. Non modifica i colori delle divise.
 finiti di 1,5–1,8 secondi. Nessun blocco dello scroll o cambio automatico di progetto.
 Senza animazioni tutti i contenuti restano visibili; il movimento ridotto interrompe
 anche gli ingressi in corso. I filtri comunicano il numero di progetti esposti.
+
+Il sito usa esclusivamente il puntatore nativo: il cursore decorativo e il relativo
+listener del mouse sono stati rimossi.
