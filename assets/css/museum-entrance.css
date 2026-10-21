@@ -64,27 +64,130 @@
   font-size: 10px;
   letter-spacing: 0.1em;
 }
+/* Scenografia dell'invito: architettura sul fondo, opere nella sala e guida sulla soglia. */
 .museum-portal-art {
   position: relative;
   display: block;
+  height: 560px;
   min-height: 560px;
   color: var(--ink);
+  isolation: isolate;
+  text-decoration: none;
 }
-/* La guida dell'invito indossa una divisa diversa dall'ospite nel Museo. */
-.portal-host {
-  position: relative;
+.portal-building {
+  position: absolute;
+  inset: 28px 0 42px 15%;
+  overflow: hidden;
+  border-radius: 46% 46% 2px 2px;
+  border: 1px solid var(--ocher);
+  background:
+    radial-gradient(
+      ellipse at 60% 25%,
+      rgba(197, 137, 75, 0.25),
+      transparent 65%
+    ),
+    var(--ink);
+  box-shadow:
+    inset 0 0 0 9px rgba(235, 218, 192, 0.06),
+    0 26px 30px -22px rgba(38, 29, 24, 0.4);
+  z-index: 0;
+}
+.portal-building::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(197, 137, 75, 0.3);
+  border-radius: inherit;
+}
+.portal-building::after {
+  content: "";
+  position: absolute;
+  inset: 65% 0 0;
+  background: linear-gradient(170deg, transparent, rgba(197, 137, 75, 0.16));
+  border-bottom: 7px solid var(--clay);
+}
+.portal-gallery-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(235, 218, 192, 0.18);
+  left: 9%;
+  right: 9%;
+  bottom: 16%;
+}
+.portal-sign {
+  position: absolute;
+  z-index: 2;
+  top: 82px;
+  left: 30%;
+  right: 7%;
+  text-align: center;
+  color: var(--bone);
+}
+.portal-sign > .mono {
+  display: block;
+  font-size: 9px;
+  color: var(--ocher);
+  margin-bottom: 8px;
+  letter-spacing: 0.12em;
+}
+.portal-sign strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+.portal-work {
+  position: absolute;
+  z-index: 1;
+  top: 210px;
+  width: 24%;
+  height: 220px;
+}
+.portal-work-home {
+  left: 40%;
+}
+.portal-work-away {
+  right: 6%;
+  top: 230px;
+  width: 22%;
+  height: 205px;
+}
+.portal-work::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 42px;
+  bottom: 100%;
+  background: rgba(197, 137, 75, 0.3);
+}
+.portal-work img {
   display: block;
   width: 100%;
-  height: 520px;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 12px rgba(0, 0, 0, 0.3));
+}
+.portal-work > .mono {
+  display: block;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--bone);
+  padding-top: 16px;
+}
+.portal-host {
+  position: absolute;
+  z-index: 3;
+  bottom: 26px;
+  left: -4%;
+  width: 53%;
+  height: 410px;
   object-fit: contain;
   object-position: center bottom;
-  filter: drop-shadow(0 20px 18px rgba(38, 29, 24, 0.16));
-}
-.portal-orbit {
-  position: absolute;
-  inset: 5% 7% 12%;
-  border: 1px solid rgba(138, 50, 38, 0.28);
-  border-radius: 50% 50% 0 0;
+  filter: drop-shadow(0 20px 18px rgba(38, 29, 24, 0.2));
 }
 .portal-plaque {
   position: absolute;
@@ -92,7 +195,7 @@
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 10px;
+  font-size: 9px;
 }
 /* Nel Museo il giaguaro resta nell'accoglienza e non segue la visita. */
 .museum-welcome {
@@ -330,17 +433,6 @@
   }
 }
 
-@media (max-width: 1000px) {
-  .portal-host {
-    height: 415px;
-  }
-}
-@media (max-width: 600px) {
-  .portal-host {
-    height: 325px;
-  }
-}
-
 /* Su desktop il gesto della guida è rivolto al testo e al collegamento del Museo. */
 @media (min-width: 601px) {
   .museum-portal-copy {
@@ -350,5 +442,92 @@
   .museum-portal-art {
     grid-column: 1;
     grid-row: 1;
+  }
+}
+
+/* In poco spazio si preservano le due opere e si riduce la guida in primo piano. */
+@media (min-width: 601px) and (max-width: 1000px) {
+  .museum-portal-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 25px;
+  }
+  .museum-portal-art {
+    height: 470px;
+    min-height: 470px;
+  }
+  .portal-sign {
+    top: 78px;
+    left: 25%;
+    right: 4%;
+  }
+  .portal-sign strong {
+    font-size: 23px;
+  }
+  .portal-sign > .mono {
+    font-size: 8px;
+  }
+  .portal-work {
+    top: 190px;
+    height: 155px;
+  }
+  .portal-work-away {
+    top: 207px;
+    height: 143px;
+  }
+  .portal-host {
+    height: 300px;
+    width: 55%;
+    bottom: 28px;
+  }
+  .portal-work > .mono {
+    font-size: 8px;
+    padding-top: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .museum-portal-art {
+    height: 390px;
+    min-height: 390px;
+    margin-top: 12px;
+  }
+  .portal-building {
+    inset: 12px 0 32px 12%;
+  }
+  .portal-sign {
+    top: 57px;
+    left: 25%;
+    right: 5%;
+  }
+  .portal-sign strong {
+    font-size: clamp(23px, 7vw, 30px);
+  }
+  .portal-sign > .mono {
+    font-size: 8px;
+  }
+  .portal-work {
+    top: 156px;
+    left: 39%;
+    width: 25%;
+    height: 142px;
+  }
+  .portal-work-away {
+    top: 171px;
+    left: auto;
+    right: 5%;
+    width: 22%;
+    height: 129px;
+  }
+  .portal-host {
+    width: 53%;
+    height: 270px;
+    left: -5%;
+    bottom: 24px;
+  }
+  .portal-work > .mono {
+    font-size: 8px;
+    padding-top: 10px;
+  }
+  .portal-plaque {
+    font-size: 8px;
   }
 }

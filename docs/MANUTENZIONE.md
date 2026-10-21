@@ -143,3 +143,15 @@ la visita; con movimento ridotto tutte le maglie appaiono subito complete.
 `museum-entrance.css` gestisce invito e accoglienza. `scripts/check.mjs` controlla
 ora ogni HTML della radice e i collegamenti con ancore fra le due pagine.
 Il prompt e la provenienza del personaggio sono in `docs/GIAGUARO-MUSEO.md`.
+
+
+## Invito come soglia del Museo
+
+La scenografia della home è HTML/CSS, senza nuove immagini generate: `.portal-building`
+crea l'arco e la sala, `.portal-sign` contiene l'insegna Ballanqué, `.portal-work`
+mostra le divise BMG Home e Away originali. Il giaguaro Cremonese resta davanti,
+di lato. Le posizioni sono adattate alle larghezze di telefono e tablet.
+`museum-motion.js` registra l'invito come tipo `portal`: arco e insegna entrano prima,
+poi le due opere e infine la guida. La sequenza finisce entro 2,8 secondi, senza
+scroll obbligato. Il link è attivo subito. Senza Web Animations o con movimento
+ridotto tutti gli elementi restano visibili nel loro stato finale.

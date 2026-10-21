@@ -129,6 +129,54 @@ export function initMuseumMotion(container, scroller = null) {
           380,
           1700,
         );
+    } else if (kind === "portal") {
+      // La soglia si costruisce prima delle opere, poi arriva la guida: nessun gate.
+      animate(
+        element.querySelector(".portal-building"),
+        [
+          { clipPath: "inset(100% 0 0 0)", opacity: 0 },
+          { clipPath: "inset(0 0 0 0)", opacity: 1 },
+        ],
+        0,
+        1600,
+      );
+      animate(
+        element.querySelector(".portal-sign"),
+        [
+          { opacity: 0, transform: "translateY(14px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        250,
+        1400,
+      );
+      element.querySelectorAll(".portal-work").forEach(function (work, index) {
+        animate(
+          work,
+          [
+            {
+              opacity: 0,
+              clipPath: "inset(0 0 100% 0)",
+              transform: "translateY(22px)",
+            },
+            {
+              opacity: 1,
+              clipPath: "inset(0 0 0 0)",
+              transform: "translateY(0)",
+            },
+          ],
+          550 + index * 220,
+          1900,
+        );
+      });
+      animate(
+        element.querySelector(".portal-host"),
+        [
+          { opacity: 0, transform: "translateX(-28px)" },
+          { opacity: 1, transform: "translateX(0)" },
+        ],
+        1000,
+        1800,
+      );
     } else if (kind === "entrance") {
       animate(
         element,
@@ -198,7 +246,8 @@ export function initMuseumMotion(container, scroller = null) {
     "title",
   );
   register(".museum-exhibit", "exhibit");
-  register(".museum-host, .museum-portal-art", "entrance");
+  register(".museum-host", "entrance");
+  register(".museum-portal-art", "portal");
   register(".expo-hero .viewer", "work");
   register(".pthumb", "photo");
   register(

@@ -90,3 +90,11 @@ Chrome a 390 × 844, 834 × 1194 e 1440 × 1000: immagine caricata,
 collegamento «Seguimi nel Museo» funzionante e asset differenti fra home e Museo.
 Nessun overflow orizzontale o errore JavaScript rilevato. Controllata visivamente
 la composizione desktop con gesto rivolto al testo dell'invito.
+
+
+## Soglia del Museo nella home — 21 ottobre 2026
+
+Chrome a 320, 390, 834, 1194 e 1440 px: entrambe le foto delle maglie caricate,
+giaguaro presente, ingresso al Museo funzionante, nessun overflow o errore JavaScript.
+Verificato il passaggio a movimento ridotto: animazioni cancellate e personaggio
+completamente visibile. Controllate le catture di telefono piccolo e desktop.
