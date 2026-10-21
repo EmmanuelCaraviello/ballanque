@@ -1,5 +1,5 @@
 /**
- * Illustrazione dello Studio: un filo diventa trama e sagoma in otto secondi.
+ * Illustrazione dello Studio: la home Atletico BMG passa da neutra a colorata in dodici secondi.
  * È un racconto grafico del metodo, non un configuratore di prodotti.
  * Il ciclo è finito, si ferma fuori schermo e offre pausa e ripetizione.
  */
@@ -16,63 +16,81 @@ function initStudio(surface) {
   const replay = section.querySelector("#studioMotionReplay");
   const steps = [...section.querySelectorAll("[data-studio-step]")];
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const duration = 8000;
+  const duration = 12000;
   let progress = preference.matches ? 1 : 0;
   let visible = false;
   let paused = false;
   let frame = 0;
   let lastTime = 0;
   let currentStep = -1;
-  const outline = [
-    [0.34, 0.19],
-    [0.21, 0.25],
-    [0.08, 0.42],
-    [0.23, 0.5],
-    [0.29, 0.43],
-    [0.28, 0.83],
-    [0.72, 0.83],
-    [0.71, 0.43],
-    [0.77, 0.5],
-    [0.92, 0.42],
-    [0.79, 0.25],
-    [0.66, 0.19],
-    [0.6, 0.25],
-    [0.55, 0.28],
-    [0.5, 0.29],
-    [0.45, 0.28],
-    [0.4, 0.25],
-    [0.34, 0.19],
-  ];
+  // L'immagine originale conserva esattamente sagoma, pattern e stemmi del progetto.
+  const shirt = new Image();
+  const neutral = document.createElement("canvas");
+  const blue = document.createElement("canvas");
+  let ready = false;
 
-  /** Traccia soltanto la frazione richiesta di una polilinea, usando la sua lunghezza reale. */
-  function stroke(points, fraction, color, width) {
-    if (fraction <= 0) return;
-    const lengths = points
-      .slice(1)
-      .map((point, index) =>
-        Math.hypot(point[0] - points[index][0], point[1] - points[index][1]),
-      );
-    let remaining =
-      lengths.reduce((sum, value) => sum + value, 0) * Math.min(1, fraction);
-    context.beginPath();
-    context.moveTo(...points[0]);
-    for (let i = 1; i < points.length && remaining > 0; i++) {
-      const ratio = Math.min(1, remaining / Math.max(0.001, lengths[i - 1]));
-      context.lineTo(
-        points[i - 1][0] + (points[i][0] - points[i - 1][0]) * ratio,
-        points[i - 1][1] + (points[i][1] - points[i - 1][1]) * ratio,
-      );
-      remaining -= lengths[i - 1];
-    }
-    context.strokeStyle = color;
-    context.lineWidth = width;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.stroke();
+  /** Crea una base neutra e una blu usando soltanto la trasparenza della stessa maglia. */
+  function prepareLayers() {
+    neutral.width = blue.width = shirt.naturalWidth;
+    neutral.height = blue.height = shirt.naturalHeight;
+    const whiteContext = neutral.getContext("2d");
+    const blueContext = blue.getContext("2d");
+    whiteContext.drawImage(shirt, 0, 0);
+    whiteContext.globalCompositeOperation = "source-in";
+    whiteContext.fillStyle = "#F4F4F4";
+    whiteContext.fillRect(0, 0, neutral.width, neutral.height);
+    // Un'ombra molto tenue mantiene leggibili volume e cuciture senza mostrare il pattern.
+    whiteContext.globalCompositeOperation = "source-atop";
+    whiteContext.globalAlpha = 0.1;
+    whiteContext.filter = "grayscale(1)";
+    whiteContext.drawImage(shirt, 0, 0);
+    blueContext.drawImage(shirt, 0, 0);
+    blueContext.globalCompositeOperation = "source-in";
+    blueContext.fillStyle = "#1b2150";
+    blueContext.fillRect(0, 0, blue.width, blue.height);
+    ready = true;
+    draw();
+    updateControls();
+    resume();
   }
 
-  /** Ridisegna alla risoluzione del dispositivo senza modificare le dimensioni del layout. */
+  /** Rende morbido l'inizio e la fine di ogni passaggio, lasciando brevi pause visive. */
+  function phase(value, start, end) {
+    const t = Math.max(0, Math.min(1, (value - start) / (end - start)));
+    return t * t * (3 - 2 * t);
+  }
+
+  /** Svela un livello dentro la sagoma con un fronte di colore leggermente ondulato. */
+  function revealLayer(image, amount, x, y, width, height) {
+    if (amount <= 0) return;
+    if (amount >= 1) {
+      context.drawImage(image, x, y, width, height);
+      return;
+    }
+    const edge = y - height * 0.06 + amount * height * 1.12;
+    context.save();
+    context.beginPath();
+    context.moveTo(x, y - height * 0.1);
+    context.lineTo(x + width, y - height * 0.1);
+    context.lineTo(x + width, edge);
+    for (let i = 60; i >= 0; i--) {
+      const ratio = i / 60;
+      context.lineTo(
+        x + ratio * width,
+        edge + Math.sin(ratio * Math.PI * 2) * height * 0.025,
+      );
+    }
+    context.closePath();
+    context.clip();
+    context.drawImage(image, x, y, width, height);
+    context.restore();
+  }
+
+  /** Ridisegna i livelli alla risoluzione del dispositivo, senza alterare il file originale. */
   function draw() {
+    if (!ready) return;
+    // Anche un ridimensionamento deve rispettare la preferenza appena cambiata.
+    if (preference.matches) progress = 1;
     const box = surface.getBoundingClientRect();
     if (!box.width || !box.height) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -84,52 +102,33 @@ function initStudio(surface) {
     }
     context.setTransform(dpr, 0, 0, dpr, 0, 0);
     context.clearRect(0, 0, box.width, box.height);
-    const point = ([x, y]) => [x * box.width, y * box.height];
-    const thread = [];
-    for (let i = 0; i <= 80; i++) {
-      const x = 0.1 + (i / 80) * 0.8;
-      thread.push(
-        point([
-          x,
-          0.67 - (0.27 * i) / 80 + Math.sin((i / 80) * Math.PI * 2) * 0.08,
-        ]),
-      );
-    }
-    stroke(thread, progress * 3, "#C5894B", 1.7);
-    for (let row = 0; row < 12; row++) {
-      const wave = [];
-      for (let i = 0; i <= 60; i++)
-        wave.push(
-          point([
-            0.2 + (i / 60) * 0.6,
-            0.31 +
-              row * 0.034 +
-              Math.sin((i / 60) * Math.PI * 2 + row * 0.22) * 0.025,
-          ]),
-        );
-      stroke(
-        wave,
-        Math.max(0, (progress - 0.2 - row * 0.018) * 2.5),
-        "#095F56",
-        1,
-      );
-    }
-    stroke(outline.map(point), (progress - 0.49) / 0.51, "#8A3226", 2);
-    const step = Math.min(2, Math.floor(progress * 3));
+    const fit = Math.min(
+      (box.width * 0.94) / shirt.naturalWidth,
+      (box.height * 0.9) / shirt.naturalHeight,
+    );
+    const width = shirt.naturalWidth * fit,
+      height = shirt.naturalHeight * fit;
+    const x = (box.width - width) / 2,
+      y = (box.height - height) / 2;
+    context.drawImage(neutral, x, y, width, height);
+    // 0–1.7 s: maglia neutra; 1.7–5.8 s: blu; pausa; 6.7–11.2 s: pattern originale.
+    revealLayer(blue, phase(progress, 0.14, 0.48), x, y, width, height);
+    revealLayer(shirt, phase(progress, 0.56, 0.93), x, y, width, height);
+    const step = progress < 0.14 ? 0 : progress < 0.56 ? 1 : 2;
     if (step !== currentStep) {
       currentStep = step;
-      steps.forEach((element, index) => {
-        element.classList.toggle("is-current", index === step);
-      });
+      steps.forEach((element, index) =>
+        element.classList.toggle("is-current", index === step),
+      );
     }
   }
 
   /** Aggiorna i pulsanti senza annunciare al lettore di schermo ogni fotogramma. */
   function updateControls() {
     controls.hidden = preference.matches;
-    toggle.disabled = progress >= 1;
+    toggle.disabled = !ready || progress >= 1;
     toggle.textContent =
-      progress >= 1 ? "Segno completo" : paused ? "Riprendi" : "Pausa";
+      progress >= 1 ? "Divisa completa" : paused ? "Riprendi" : "Pausa";
     toggle.setAttribute(
       "aria-label",
       paused
@@ -148,7 +147,14 @@ function initStudio(surface) {
   /** Esegue un solo ciclo; il tempo fuori schermo non fa saltare parti del racconto. */
   function tick(time) {
     frame = 0;
+    if (preference.matches) {
+      progress = 1;
+      draw();
+      updateControls();
+      return;
+    }
     if (
+      !ready ||
       !visible ||
       paused ||
       document.hidden ||
@@ -169,7 +175,14 @@ function initStudio(surface) {
 
   /** Avvia o riprende soltanto quando il visitatore può vedere l'illustrazione. */
   function resume() {
+    if (preference.matches) {
+      progress = 1;
+      draw();
+      updateControls();
+      return;
+    }
     if (
+      ready &&
       !frame &&
       visible &&
       !paused &&
@@ -195,9 +208,9 @@ function initStudio(surface) {
     updateControls();
     resume();
   });
-  preference.addEventListener("change", function () {
+  preference.addEventListener("change", function (event) {
     stopFrame();
-    if (preference.matches) progress = 1;
+    if (event.matches) progress = 1;
     draw();
     updateControls();
     resume();
@@ -222,6 +235,16 @@ function initStudio(surface) {
   }
   if ("ResizeObserver" in window) new ResizeObserver(draw).observe(surface);
   else window.addEventListener("resize", draw);
+  shirt.addEventListener("load", prepareLayers, { once: true });
+  shirt.addEventListener(
+    "error",
+    function () {
+      controls.hidden = true;
+      section.querySelector(".studio-art").hidden = true;
+    },
+    { once: true },
+  );
+  shirt.src = "assets/images/image-06.webp";
   draw();
   updateControls();
   resume();

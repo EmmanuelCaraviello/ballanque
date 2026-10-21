@@ -40,3 +40,8 @@ Verificato in Chrome a 390 × 844, 834 × 1194 e 1440 × 1000 pixel CSS:
 avanzamento da filo a trama, pausa stabile, ripetizione e passaggio a movimento
 ridotto con risultato completo. Nessun overflow orizzontale o errore JavaScript.
 Controllate visivamente le catture di telefono e desktop.
+
+Aggiornamento: la sequenza è ora di dodici secondi e usa la home Atletico BMG.
+Ripetute le verifiche a 390, 834 e 1440 px: pausa, ripetizione, movimento ridotto,
+assenza di overflow e di errori JavaScript. Controllata anche la resa finale
+della maglia originale sul fondo libero dello Studio.

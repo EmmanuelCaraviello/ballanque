@@ -15,8 +15,12 @@
 
 ## Illustrazione dello Studio
 
-Il canvas racconta il metodo in un ciclo finito di otto secondi: filo, trama,
-sagoma. Non genera una divisa e non usa dati dei progetti del Museo.
+Il canvas racconta il metodo in un ciclo finito di dodici secondi: maglia neutra,
+blu di base, pattern e dettagli originali della home Atletico BMG.
+Usa `assets/images/image-06.webp` senza modificare il file: due livelli preparati
+nel browser riutilizzano la trasparenza della maglia per le fasi neutra e blu;
+lo svelamento finale mostra l'immagine originale, con stemmi e dettagli reali.
+Non genera o configura una nuova divisa.
 Parte quando il canvas entra in vista, si ferma fuori schermo o quando la scheda
 del browser non è visibile, e può essere messo in pausa o rivisto.
 `ResizeObserver` ridisegna il punto corrente dopo un cambio di dimensioni.
