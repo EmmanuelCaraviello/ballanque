@@ -20,7 +20,10 @@ Ascoltiamo traccia la sagoma su una tela vuota; Esploriamo dipinge strisce blu
 e logo; Disegniamo svela la divisa originale Atletico BMG.
 `studio.js` gestisce tempo, visibilità, pausa e preferenze; `studio-scene.js`
 disegna tela, personaggio e pennellate. Il pennello segue il punto dipinto.
-La sagoma bianca è disegnata nel canvas, senza una fotografia in trasparenza.
+La sagoma bianca usa esclusivamente il canale alfa della fotografia originale:
+nessuna trama fotografica in trasparenza, contorno e dimensioni identici alla divisa finale.
+Il braccio mantiene scala costante: ruota dalla manica e il corpo si sposta
+per accompagnare la punta del pennello, senza deformazioni.
 L'immagine finale è `assets/images/image-06.webp`, il logo `image-03.webp`.
 Il personaggio usa `jaguar-artist-atlas-v1.png`: corpo e braccio sono separati
 nello stesso atlante, animati con rotazioni e spostamenti nel canvas.

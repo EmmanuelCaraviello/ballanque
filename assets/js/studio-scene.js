@@ -11,24 +11,8 @@ export function createStudioScene(surface) {
     logo: "assets/images/image-03.webp",
   };
   const pictures = {};
-  const shape = [
-    [0.36, 0.02],
-    [0.2, 0.07],
-    [0.02, 0.25],
-    [0.12, 0.43],
-    [0.22, 0.38],
-    [0.21, 0.98],
-    [0.79, 0.98],
-    [0.78, 0.38],
-    [0.88, 0.43],
-    [0.98, 0.25],
-    [0.8, 0.07],
-    [0.64, 0.02],
-    [0.61, 0.09],
-    [0.5, 0.14],
-    [0.39, 0.09],
-    [0.36, 0.02],
-  ];
+  let shape = [];
+  let silhouette;
   const box = { x: 568, y: 148, w: 330, h: 430 };
   let logoLayer;
 
@@ -48,6 +32,41 @@ export function createStudioScene(surface) {
         }),
     ),
   ).then(() => {
+    // La maschera deriva dai pixel alfa della foto: tutte le fasi condividono il contorno.
+    silhouette = document.createElement("canvas");
+    silhouette.width = pictures.shirt.naturalWidth;
+    silhouette.height = pictures.shirt.naturalHeight;
+    const mask = silhouette.getContext("2d", { willReadFrequently: true });
+    mask.drawImage(pictures.shirt, 0, 0);
+    const { width, height } = silhouette;
+    const pixels = mask.getImageData(0, 0, width, height).data;
+    const solid = (x, y) =>
+      x >= 0 &&
+      y >= 0 &&
+      x < width &&
+      y < height &&
+      pixels[(y * width + x) * 4 + 3] >= 128;
+    const left = [],
+      right = [];
+    // Il profilo per riga conserva maniche e collo anche quando il bordo alfa
+    // contiene pixel diagonali che interromperebbero un inseguimento degli spigoli.
+    for (let y = 0; y < height; y++) {
+      let first = -1,
+        last = -1;
+      for (let x = 0; x < width; x++) {
+        if (!solid(x, y)) continue;
+        if (first < 0) first = x;
+        last = x;
+      }
+      if (first < 0) continue;
+      left.push([first / width, y / height]);
+      right.push([(last + 1) / width, y / height]);
+    }
+    shape = [...left, ...right.reverse()];
+    if (shape.length) shape.push(shape[0]);
+    mask.globalCompositeOperation = "source-in";
+    mask.fillStyle = "#F4F4F4";
+    mask.fillRect(0, 0, width, height);
     logoLayer = document.createElement("canvas");
     logoLayer.width = pictures.logo.naturalWidth;
     logoLayer.height = pictures.logo.naturalHeight;
@@ -133,12 +152,22 @@ export function createStudioScene(surface) {
   function artist(tip, progress) {
     const arriving = phase(progress, 0, 0.09),
       entry = 1 - Math.pow(1 - arriving, 3);
-    const painterX =
-      Math.max(25, Math.min(230, tip[0] - 520)) - (1 - entry) * 470;
-    const bob = progress > 0.94 ? 0 : Math.sin(progress * Math.PI * 30) * 1.7;
-    const painterY = 225 + bob,
-      bodyW = 398,
+    const bodyW = 398,
       bodyH = 453;
+    const armScale = 0.46;
+    const reach = Math.hypot(590, -135) * armScale;
+    const angle = Math.max(
+      -0.8,
+      Math.min(0.65, Math.atan2(tip[1] - 375, tip[0] - 440)),
+    );
+    // Spostiamo il personaggio per raggiungere la tela, senza mai allungare il braccio.
+    const shoulder = [
+      tip[0] - Math.cos(angle) * reach,
+      tip[1] - Math.sin(angle) * reach,
+    ];
+    const painterX = shoulder[0] - (696 / 900) * bodyW - (1 - entry) * 470;
+    const painterY = shoulder[1] - (334 / 1024) * bodyH;
+    shoulder[0] -= (1 - entry) * 470;
     ctx.save();
     ctx.globalAlpha = Math.min(1, arriving * 2);
     ctx.drawImage(
@@ -152,15 +181,9 @@ export function createStudioScene(surface) {
       bodyW,
       bodyH,
     );
-    const shoulder = [
-      painterX + (696 / 900) * bodyW,
-      painterY + (334 / 1024) * bodyH,
-    ];
-    const dx = tip[0] - shoulder[0],
-      dy = tip[1] - shoulder[1];
-    const scale = Math.hypot(dx, dy) / Math.hypot(590, -135);
+    const scale = armScale;
     ctx.translate(...shoulder);
-    ctx.rotate(Math.atan2(dy, dx) - Math.atan2(-135, 590));
+    ctx.rotate(angle - Math.atan2(-135, 590));
     ctx.drawImage(
       pictures.artist,
       916,
@@ -211,10 +234,8 @@ export function createStudioScene(surface) {
       tip = trace(outline, phase(progress, 0.1, 0.31), "#261D18", 2.2);
     }
     if (progress >= 0.31) {
-      shirtPath();
-      ctx.fillStyle = "#F4F4F4";
-      ctx.fill();
-      trace(outline, 1, "rgba(38,29,24,.45)", 1.5);
+      ctx.drawImage(silhouette, box.x, box.y, box.w, box.h);
+      trace(outline, 1, "rgba(38,29,24,.3)", 0.8);
     }
     const stripes = phase(progress, 0.35, 0.62) * 6;
     if (stripes > 0) {
