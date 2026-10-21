@@ -119,3 +119,10 @@ testo originale conservato, firma e parole dentro la tela, nessun overflow
 o errore JavaScript rilevato. Controllate le catture desktop e telefono.
 Verificati menu, collegamento al Museo e arresto degli ingressi al passaggio
 al movimento ridotto. Titolo disponibile anche con GSAP e ScrollTrigger bloccati.
+
+
+## Maglia staff sul giaguaro — 21 ottobre 2026
+
+Verificati caricamento della nuova illustrazione e collegamento al Museo a
+320, 390, 834, 1194 e 1440 px. Controllata visivamente la cattura desktop:
+maniche lunghe, verde/avorio e marchio giallo coerenti con il riferimento del cliente.

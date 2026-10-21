@@ -131,7 +131,7 @@ listener del mouse sono stati rimossi.
 `index.html` contiene l'invito breve; `museo.html` ospita l'accoglienza, tutti i
 progetti e la lente. Entrambe le pagine restano nella radice per gli hosting statici.
 `main.js` importa schede e lente soltanto dove sono presenti i rispettivi contenitori.
-Il giaguaro invita dalla home con la divisa Cremonese; nell'accoglienza del Museo
+Il giaguaro invita dalla home con la maglia staff fornita dal cliente; nell'accoglienza del Museo
 indossa la BMG. Non compare lungo la parete delle opere e non impone attese.
 I collegamenti a Studio e Contatti tornano alle sezioni della home.
 
@@ -149,7 +149,7 @@ Il prompt e la provenienza del personaggio sono in `docs/GIAGUARO-MUSEO.md`.
 
 La scenografia della home è HTML/CSS, senza nuove immagini generate: `.portal-building`
 crea l'arco e la sala, `.portal-sign` contiene l'insegna Ballanqué, `.portal-work`
-mostra le divise BMG Home e Away originali. Il giaguaro Cremonese resta davanti,
+mostra le divise BMG Home e Away originali. Il giaguaro con la maglia staff resta davanti,
 di lato. Le posizioni sono adattate alle larghezze di telefono e tablet.
 `museum-motion.js` registra l'invito come tipo `portal`: arco e insegna entrano prima,
 poi le due opere e infine la guida. La sequenza finisce entro 2,8 secondi, senza
