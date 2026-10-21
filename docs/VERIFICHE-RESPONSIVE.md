@@ -110,3 +110,12 @@ Controllate le catture di telefono piccolo e desktop.
 Verificata la cancellazione delle animazioni cambiando preferenza durante
 l'ingresso e il titolo visibile con movimento ridotto e GSAP/ScrollTrigger bloccati.
 Prove su finestre simulate in Chrome, non su dispositivi fisici o Safari iOS.
+
+
+## Pittura a impatto e titolo centrato — 21 ottobre 2026
+
+Chrome a 320, 390, 834, 1194 e 1440 px: titolo centrato orizzontalmente,
+testo originale conservato, firma e parole dentro la tela, nessun overflow
+o errore JavaScript rilevato. Controllate le catture desktop e telefono.
+Verificati menu, collegamento al Museo e arresto degli ingressi al passaggio
+al movimento ridotto. Titolo disponibile anche con GSAP e ScrollTrigger bloccati.

@@ -159,14 +159,12 @@ ridotto tutti gli elementi restano visibili nel loro stato finale.
 
 ## Tela tipografica dell'ingresso
 
-La prima schermata usa `.hero-canvas`: fondo tessile costruito in CSS, titolo HTML
-originale e logo ufficiale come firma in basso a destra. La vecchia fotografia
-`image-04.webp` non viene più richiesta dalla prima schermata; resta nell'archivio.
-`hero-canvas.css` definisce tela, contrasto, trama e adattamenti di telefono/iPad.
-`hero-canvas.js` rivela le tre righe con maschere poligonali irregolari, alternando
-la direzione della pennellata. Le lettere non vengono spostate né duplicate.
-La sequenza termina entro 4,55 secondi; la firma chiude l'ingresso. Nessun ciclo
-infinito, nessun blocco dello scroll e collegamento al Museo disponibile subito.
-Senza Web Animations e con movimento ridotto il risultato è immediatamente completo.
-Se la preferenza cambia durante il disegno, tutte le animazioni vengono cancellate.
-La sequenza non dipende da GSAP e non riguarda l'accoglienza di `museo.html`.
+La prima schermata usa `.hero-canvas` con trama fotografica di lino
+`artist-linen-v1.png`, bordo e spessore del telaio. Il titolo originale è centrato;
+la firma Ballanqué resta in basso a destra e il link al Museo è disponibile subito.
+`hero-canvas.js` suddivide le righe in parole senza duplicarne il contenuto:
+le parole arrivano con un impatto breve e schizzi SVG coordinati, anziché una tendina.
+Le maschere decorative hanno aria-hidden e non intercettano il puntatore.
+La sequenza finisce entro 4,35 secondi, senza loop o blocchi dello scroll.
+Con movimento ridotto e senza Web Animations il titolo rimane subito completo.
+Il cambio di preferenza cancella gli ingressi già avviati. L'effetto non dipende da GSAP.

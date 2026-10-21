@@ -1,7 +1,6 @@
 /**
- * Dipinge le righe del titolo sulla tela senza duplicare il testo o bloccare la pagina.
- * I bordi irregolari della maschera simulano il passaggio della pennellata.
- * Senza Web Animations o con movimento ridotto il testo rimane subito completo.
+ * Il titolo arriva come pigmento lanciato: impatto delle parole e schizzi coordinati.
+ * Il testo resta HTML, leggibile e immediatamente completo senza animazioni.
  */
 export function initHeroCanvas() {
   const canvas = document.querySelector(".hero-canvas");
@@ -9,49 +8,91 @@ export function initHeroCanvas() {
   if (!canvas || preference.matches || !Element.prototype.animate) return;
   const running = new Set();
 
-  /** Registra solo ingressi finiti e rende possibile cancellarli in modo coerente. */
-  function paint(element, frames, delay, duration) {
+  /** Avvia un gesto finito: nessun fotogramma continuo o blocco dello scorrimento. */
+  function paint(
+    element,
+    frames,
+    delay,
+    duration,
+    easing = "cubic-bezier(.16,1,.3,1)",
+  ) {
     const animation = element.animate(frames, {
       delay,
       duration,
-      easing: "cubic-bezier(.42,0,.24,1)",
+      easing,
       fill: "backwards",
     });
     running.add(animation);
     animation.finished.then(() => running.delete(animation)).catch(() => {});
   }
-
-  /** Il fronte della pennellata alterna piccole sporgenze, senza muovere le lettere. */
-  function edge(percent, reverse) {
-    const x = reverse ? 100 - percent : percent;
-    const outer = reverse ? 100 : 0;
-    const rough = (offset) =>
-      Math.max(0, Math.min(100, x + (reverse ? -offset : offset)));
-    return `polygon(${outer}% 0%, ${rough(0)}% 0%, ${rough(2)}% 12%, ${rough(-1)}% 25%, ${rough(1.5)}% 42%, ${rough(-2)}% 60%, ${rough(1)}% 79%, ${rough(0)}% 100%, ${outer}% 100%)`;
-  }
   canvas
     .querySelectorAll("#heroTitle .row > span")
     .forEach(function (line, index) {
-      const reverse = index === 1;
-      const frames = [0, 18, 42, 68, 100].map(function (percent) {
-        return {
-          clipPath: edge(percent * 1.06 - 3, reverse),
-          offset: percent / 100,
-        };
+      // Le parole arrivano dall'asse centrale: nessuna tendina che scorre da un lato.
+      const fragment = document.createDocumentFragment();
+      line.textContent.split(/(\s+)/).forEach(function (word) {
+        if (!word.trim()) {
+          fragment.appendChild(document.createTextNode(word));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = "paint-word";
+        span.textContent = word;
+        fragment.appendChild(span);
       });
-      paint(line, frames, 180 + index * 920, 1950);
+      line.replaceChildren(fragment);
+      line.querySelectorAll(".paint-word").forEach(function (word, wordIndex) {
+        const tilt = (wordIndex % 2 ? 1 : -1) * 7;
+        paint(
+          word,
+          [
+            {
+              opacity: 0,
+              transform: `translateY(-22px) scale(1.55) rotate(${tilt}deg)`,
+              filter: "blur(8px)",
+              offset: 0,
+            },
+            {
+              opacity: 1,
+              transform: "translateY(2px) scale(.97) rotate(-1deg)",
+              filter: "blur(.6px)",
+              offset: 0.35,
+            },
+            {
+              opacity: 1,
+              transform: "translateY(0) scale(1) rotate(0)",
+              filter: "blur(0)",
+              offset: 1,
+            },
+          ],
+          350 + index * 980 + wordIndex * 100,
+          1150,
+        );
+      });
     });
+  canvas.querySelectorAll(".paint-impact").forEach(function (splash, index) {
+    paint(
+      splash,
+      [
+        { opacity: 0, transform: "scale(.15)", offset: 0 },
+        { opacity: 0.85, transform: "scale(1.08)", offset: 0.3 },
+        { opacity: 0.65, transform: "scale(1)", offset: 1 },
+      ],
+      450 + index * 980,
+      1200,
+    );
+  });
   paint(
     canvas.querySelector(".hero-signature"),
     [
-      { opacity: 0, clipPath: "inset(0 100% 0 0)" },
-      { opacity: 1, clipPath: "inset(0)" },
+      { opacity: 0, transform: "scale(1.12)", filter: "blur(3px)" },
+      { opacity: 1, transform: "scale(1)", filter: "blur(0)" },
     ],
-    3500,
-    1050,
+    3450,
+    900,
   );
 
-  /** Il cambio di preferenza mostra immediatamente testo e firma definitivi. */
+  /** Un cambio di preferenza lascia subito il titolo e la firma nel loro stato finale. */
   function stop(event) {
     if (!event.matches) return;
     running.forEach((animation) => animation.cancel());
