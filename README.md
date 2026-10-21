@@ -8,6 +8,9 @@ Il progetto usa HTML, CSS e JavaScript senza una fase di compilazione.
 ```text
 index.html                 Home: Studio, invito al Museo e contatti
 museo.html                 Accoglienza, parete dei progetti e lente
+privacy.html               Bozza Privacy, dati del titolare da completare
+cookie.html                Bozza Cookie, configurazione hosting da verificare
+note-legali.html           Bozza delle informazioni sul gestore
 assets/
   css/
     main.css               Punto di ingresso dei fogli di stile
@@ -20,6 +23,7 @@ assets/
     motion.css             Maschere dei titoli e supporto al movimento ridotto
     museum-entrance.css     Invito nella home, accoglienza e livelli delle maglie
     museum.css             Parete espositiva e ambienti responsive del Museo
+    legal.css              Pagine informative e menu con collegamenti legali
     hero-canvas.css        Tela tipografica iniziale e firma del brand
     studio.css             Composizione dello Studio e controlli del segno animato
   js/
@@ -81,3 +85,8 @@ di posta del visitatore; il sito non invia email tramite un server.
 Le modifiche vengono salvate sul branch `riordino-sito`, con un commit per intervento.
 Il tag `originale-consegnato` identifica lo stato iniziale locale.
 Per annullare un intervento già condiviso usare `git revert`, conservando la cronologia.
+
+
+Le pagine informative sono bozze in revisione e hanno `noindex`.
+Prima della pubblicazione completare i dati reali e verificare i servizi di produzione:
+vedere `docs/REVISIONE-LEGALI.md`. Caricare anche i tre HTML informativi sull'hosting.

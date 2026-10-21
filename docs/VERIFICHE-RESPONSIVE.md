@@ -133,3 +133,14 @@ maniche lunghe, verde/avorio e marchio giallo coerenti con il riferimento del cl
 Chrome a 320, 390, 834, 1194 e 1440 px: nessun overflow dell'header, maglia staff
 caricata nel Museo, vecchio pulsante della hero rimosso. Verificati menu con Esc
 e percorso dalla scheda progetto a `index.html#commissiona`, senza errori JavaScript.
+
+
+## Pagine legali e navigazione estesa — 21 ottobre 2026
+
+Verificati i link del footer a Privacy, Cookie e Note legali su cinque larghezze,
+menu mobile e presenza dei segnaposto dichiarati come bozze. Nessun overflow
+delle pagine o dell'header, nessun errore JavaScript rilevato.
+Controllata visivamente la cattura Privacy desktop. Nel contesto di test locale
+non sono risultati cookie; richieste osservate verso localhost, fonts.googleapis.com,
+fonts.gstatic.com e cdnjs.cloudflare.com. Questo controllo non certifica la
+configurazione del sito pubblicato o i comportamenti futuri dell'hosting.

@@ -180,3 +180,18 @@ nativa, senza cercare una sezione assente nella pagina Museo.
 Sui telefoni fino a 380 px il nome esteso nella barra lascia spazio ai controlli;
 il logo conserva il nome accessibile. Esc chiude il menu anche se il focus non
 è ancora passato al primo collegamento durante l'apertura.
+
+
+## Pagine informative in revisione
+
+Privacy, Cookie e Note legali sono HTML separati, collegati da header, menu touch
+e footer in tutte le pagine. Il contenuto standard è dichiarato bozza e i dati
+sconosciuti sono campi da compilare; non usare dati aziendali inventati.
+Le pagine sono `noindex,follow` fino alla revisione. `legal.css` gestisce indice,
+leggibilità, tabelle, footer e menu esteso. Per evitare sovrapposizioni, sotto
+1100 px si usa il menu con tutte le voci.
+Il codice locale non integra analytics, pixel o scritture in cookie/localStorage.
+Non è stata aggiunta una gestione fittizia del consenso. Prima di pubblicare,
+verificare hosting e dominio effettivo e aggiornare l'informativa o introdurre
+blocco preventivo e gestione del consenso se servono per le tecnologie adottate.
+Dati da raccogliere e fonti sono elencati in `docs/REVISIONE-LEGALI.md`.
