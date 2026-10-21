@@ -20,6 +20,7 @@ assets/
     motion.css             Maschere dei titoli e supporto al movimento ridotto
     museum-entrance.css     Invito nella home, accoglienza e livelli delle maglie
     museum.css             Parete espositiva e ambienti responsive del Museo
+    hero-canvas.css        Tela tipografica iniziale e firma del brand
     studio.css             Composizione dello Studio e controlli del segno animato
   js/
     main.js                Punto di ingresso dei moduli JavaScript
@@ -30,6 +31,7 @@ assets/
     navigation.js          Menu e collegamenti alle sezioni
     dialogs.js             Focus e accessibilità dei dialoghi
     lens.js                Ingrandimento manuale dei dettagli della maglia
+    hero-canvas.js         Comparsa del titolo a pennellate, senza dipendenze
     animations.js          Animazioni di ingresso e comparsa
     museum-motion.js       Titoli, opere e fotografie che compaiono scorrendo
     studio.js              Tempi, pausa e accessibilità del racconto dello Studio

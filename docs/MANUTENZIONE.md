@@ -155,3 +155,18 @@ di lato. Le posizioni sono adattate alle larghezze di telefono e tablet.
 poi le due opere e infine la guida. La sequenza finisce entro 2,8 secondi, senza
 scroll obbligato. Il link è attivo subito. Senza Web Animations o con movimento
 ridotto tutti gli elementi restano visibili nel loro stato finale.
+
+
+## Tela tipografica dell'ingresso
+
+La prima schermata usa `.hero-canvas`: fondo tessile costruito in CSS, titolo HTML
+originale e logo ufficiale come firma in basso a destra. La vecchia fotografia
+`image-04.webp` non viene più richiesta dalla prima schermata; resta nell'archivio.
+`hero-canvas.css` definisce tela, contrasto, trama e adattamenti di telefono/iPad.
+`hero-canvas.js` rivela le tre righe con maschere poligonali irregolari, alternando
+la direzione della pennellata. Le lettere non vengono spostate né duplicate.
+La sequenza termina entro 4,55 secondi; la firma chiude l'ingresso. Nessun ciclo
+infinito, nessun blocco dello scroll e collegamento al Museo disponibile subito.
+Senza Web Animations e con movimento ridotto il risultato è immediatamente completo.
+Se la preferenza cambia durante il disegno, tutte le animazioni vengono cancellate.
+La sequenza non dipende da GSAP e non riguarda l'accoglienza di `museo.html`.

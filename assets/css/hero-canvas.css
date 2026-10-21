@@ -1,0 +1,205 @@
+/* Prima opera del sito: tela tipografica, trama tessile statica e firma del brand. */
+.hero-canvas {
+  min-height: max(740px, 100svh);
+  padding: 145px max(var(--gutter), 6vw) 105px;
+  grid-template-rows: auto 1fr auto auto;
+  justify-items: start;
+  text-align: left;
+  color: var(--ink);
+  background: var(--ink);
+}
+/* Il bordo scuro lascia leggibile la navigazione; la tela non è un'immagine scaricata. */
+.hero-canvas::before {
+  inset: 90px 16px 20px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(38, 29, 24, 0.012) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(38, 29, 24, 0.012) 0 1px,
+      transparent 1px 3px
+    ),
+    radial-gradient(
+      ellipse at 22% 10%,
+      rgba(244, 244, 244, 0.65),
+      transparent 70%
+    ),
+    var(--bone);
+  box-shadow:
+    inset 0 0 0 1px rgba(38, 29, 24, 0.17),
+    inset 5px 5px 14px rgba(244, 244, 244, 0.35),
+    inset -6px -7px 18px rgba(38, 29, 24, 0.09),
+    0 9px 18px rgba(0, 0, 0, 0.2);
+}
+.hero-canvas-label {
+  color: var(--clay);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+.hero-canvas .hero-stage {
+  min-height: 320px;
+  padding-block: 35px 30px;
+  justify-items: start;
+}
+.hero-canvas .hero-type {
+  width: 100%;
+}
+.hero-canvas .hero-type h1 {
+  font-size: clamp(30px, 6.8vw, 110px);
+  line-height: 1.06;
+  color: var(--ink);
+  text-shadow: none;
+  letter-spacing: -0.05em;
+}
+.hero-canvas .hero-type h1 .row {
+  overflow: visible;
+  padding-block: 0.035em;
+}
+/* La trama lieve continua nell'inchiostro, mantenendo il contrasto delle parole. */
+.hero-canvas .hero-type h1 .row > span {
+  color: var(--ink);
+  background: repeating-linear-gradient(
+    4deg,
+    var(--ink) 0 3px,
+    #3b2c23 3px 4px
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-canvas .hero-type h1 .row > .gold {
+  color: var(--clay);
+  background-image: repeating-linear-gradient(
+    -3deg,
+    var(--clay) 0 4px,
+    #963e30 4px 5px
+  );
+}
+.hero-canvas .hero-description {
+  color: #5b493d;
+  text-align: left;
+  margin: 12px 0 20px;
+  max-width: 43ch;
+  font-size: 16px;
+}
+.hero-canvas .hero-foot {
+  justify-content: flex-start;
+  width: auto;
+  text-align: left;
+}
+.hero-canvas .hero-foot > .mono {
+  display: none;
+}
+.hero-canvas .enter {
+  min-height: 44px;
+  font-size: 11px;
+}
+.hero-canvas .enter i {
+  background: var(--clay);
+}
+.hero-canvas :focus-visible {
+  outline-color: var(--jade);
+}
+.hero-signature {
+  position: absolute;
+  right: max(42px, 6vw);
+  bottom: 75px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--clay);
+}
+.hero-signature > .logo {
+  width: 30px;
+  background: var(--clay);
+}
+.hero-signature b {
+  display: block;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: -0.035em;
+}
+.hero-signature .mono {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin-top: 5px;
+}
+@media (max-width: 1024px) {
+  .hero-canvas {
+    min-height: max(740px, 100svh);
+    padding-top: 135px;
+    padding-bottom: 145px;
+  }
+  .hero-canvas .hero-stage {
+    min-height: 300px;
+  }
+  .hero-signature {
+    bottom: 55px;
+    right: 6vw;
+  }
+}
+@media (max-width: 600px) {
+  .hero-canvas {
+    min-height: max(690px, 100svh);
+    padding: 120px 28px 155px;
+  }
+  .hero-canvas::before {
+    inset: 85px 10px 16px;
+  }
+  .hero-canvas-label {
+    font-size: 8px;
+    max-width: 28ch;
+    line-height: 1.8;
+  }
+  .hero-canvas .hero-stage {
+    min-height: 235px;
+    padding-block: 25px;
+  }
+  .hero-canvas .hero-type h1 {
+    font-size: clamp(24px, 7vw, 42px);
+    line-height: 1.15;
+  }
+  .hero-canvas .hero-description {
+    font-size: 14px;
+    line-height: 1.75;
+    max-width: 30ch;
+  }
+  .hero-canvas .hero-foot > .enter {
+    justify-content: flex-start;
+    font-size: 10px;
+    gap: 10px;
+  }
+  .hero-canvas .enter i {
+    width: 28px;
+  }
+  .hero-signature {
+    right: 28px;
+    bottom: 47px;
+    gap: 11px;
+  }
+  .hero-signature > .logo {
+    width: 24px;
+  }
+  .hero-signature b {
+    font-size: 19px;
+  }
+  .hero-signature .mono {
+    font-size: 7px;
+  }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero-canvas {
+    min-height: 690px;
+  }
+}
+@media (forced-colors: active) {
+  .hero-canvas .hero-type h1 .row > span {
+    -webkit-text-fill-color: CanvasText;
+    background: none;
+  }
+}

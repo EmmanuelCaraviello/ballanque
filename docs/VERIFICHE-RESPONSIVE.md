@@ -98,3 +98,15 @@ Chrome a 320, 390, 834, 1194 e 1440 px: entrambe le foto delle maglie caricate,
 giaguaro presente, ingresso al Museo funzionante, nessun overflow o errore JavaScript.
 Verificato il passaggio a movimento ridotto: animazioni cancellate e personaggio
 completamente visibile. Controllate le catture di telefono piccolo e desktop.
+
+
+## Tela iniziale dipinta — 21 ottobre 2026
+
+Chrome a 320 × 740, 390 × 844, 834 × 1194, 1194 × 834 e 1440 × 1000:
+testo originale conservato, nessuna foto della maglia nella hero, firma e titolo
+contenuti nella schermata, nessun overflow orizzontale o errore JavaScript.
+Provati menu con Esc e collegamento dalla hero alla pagina Museo.
+Controllate le catture di telefono piccolo e desktop.
+Verificata la cancellazione delle animazioni cambiando preferenza durante
+l'ingresso e il titolo visibile con movimento ridotto e GSAP/ScrollTrigger bloccati.
+Prove su finestre simulate in Chrome, non su dispositivi fisici o Safari iOS.

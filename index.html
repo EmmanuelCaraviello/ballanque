@@ -97,25 +97,16 @@
     <!-- Contenuto: ingresso → studio → invito al Museo → contatti. -->
     <main>
       <!-- Ingresso immediato: nessuna schermata preliminare o attesa obbligata. -->
-      <section class="threshold" id="ingresso">
-        <i
-          class="logo hero-logo"
-          role="img"
-          aria-label="Ballanqué Football"
-        ></i>
+      <section
+        class="threshold hero-canvas"
+        id="ingresso"
+        aria-labelledby="heroTitle"
+      >
+        <!-- La tela è costruita in CSS: nessuna fotografia dietro al testo. -->
+        <span class="hero-canvas-label mono"
+          >Ballanqué / Atelier di identità calcistica</span
+        >
         <div class="hero-stage">
-          <div class="hero-art" aria-hidden="true">
-            <div class="spot"></div>
-            <img
-              id="heroShirt"
-              src="assets/images/image-04.webp"
-              alt=""
-              width="819"
-              height="606"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
           <div class="hero-type">
             <h1 id="heroTitle">
               <span class="row"><span>We don't create</span></span>
@@ -138,6 +129,13 @@
             target="_blank"
             rel="noopener"
             >@ballanquefootball</a
+          >
+        </div>
+        <div class="hero-signature" aria-label="Firmato Ballanqué Football">
+          <i class="logo" aria-hidden="true"></i>
+          <span
+            ><b>BALLANQUÉ</b
+            ><span class="mono">Football · Identity · Culture</span></span
           >
         </div>
       </section>
