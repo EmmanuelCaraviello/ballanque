@@ -1,11 +1,9 @@
 /**
- * Punto di ingresso del sito. I moduli dichiarano esplicitamente le loro dipendenze.
- * GSAP e ScrollTrigger sono caricati prima di questo modulo da index.html.
- * Usare un server locale (Go Live): i moduli ES non vanno aperti tramite file://.
+ * Ingresso condiviso: carica solo i moduli della pagina corrente.
+ * Le schede e la lente appartengono al Museo; la home mantiene Studio e invito.
  */
 import "./navigation.js";
-import "./collection.js";
-import "./exhibition.js";
-import "./lens.js";
-import "./animations.js";
 import "./studio.js";
+if (document.getElementById("track")) await import("./exhibition.js");
+if (document.getElementById("zoomer")) await import("./lens.js");
+await import("./animations.js");

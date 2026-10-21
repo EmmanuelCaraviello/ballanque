@@ -68,3 +68,18 @@ Con animazioni attive, a 390, 834 e 1440 px: aperte tutte e sette le schede,
 verificati filtro Away, apertura con Invio, chiusura con Esc e passaggio al movimento
 ridotto. Nessun overflow o errore JavaScript rilevato. Prove su finestre simulate,
 non su iPhone/iPad fisici.
+
+
+## Museo su pagina dedicata — 21 ottobre 2026
+
+Chrome: 320 × 740, 390 × 844, 834 × 1194, 1194 × 834 e 1440 × 1000.
+Verificati home senza archivio completo, ingresso tramite link, ritorni a Studio
+e Contatti con controllo statico delle ancore, menu e chiusura con Esc,
+sette progetti, filtro Away, apertura da tastiera, galleria e chiusura della scheda.
+Controllata l'animazione attiva del livello a colori e il risultato completo.
+Nessun overflow orizzontale o errore JavaScript rilevato nelle sequenze.
+Provato il Museo con GSAP e ScrollTrigger bloccati e movimento ridotto:
+apertura e chiusura delle opere restano disponibili, senza errori JavaScript.
+Ripetute le prove su telefono dopo l'affiancamento del giaguaro al titolo.
+Controllate le catture di home, accoglienza e prima opera su desktop e telefono.
+Non sono prove su dispositivi fisici o su Safari iOS.

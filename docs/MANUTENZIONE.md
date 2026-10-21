@@ -124,3 +124,21 @@ anche gli ingressi in corso. I filtri comunicano il numero di progetti esposti.
 
 Il sito usa esclusivamente il puntatore nativo: il cursore decorativo e il relativo
 listener del mouse sono stati rimossi.
+
+
+## Home e Museo separati
+
+`index.html` contiene l'invito breve; `museo.html` ospita l'accoglienza, tutti i
+progetti e la lente. Entrambe le pagine restano nella radice per gli hosting statici.
+`main.js` importa schede e lente soltanto dove sono presenti i rispettivi contenitori.
+Il giaguaro compare solo nell'accoglienza del Museo, senza gate o attese obbligate.
+I collegamenti a Studio e Contatti tornano alle sezioni della home.
+
+La creazione di ogni divisa usa tre copie della stessa foto (sagoma, base tonale,
+colore originale), sovrapposte nelle stesse coordinate. Le animazioni native
+svelano la maglia in circa 3,75 secondi una sola volta quando entra in vista.
+Con movimento ridotto, senza GSAP o senza Web Animations resta disponibile
+la visita; con movimento ridotto tutte le maglie appaiono subito complete.
+`museum-entrance.css` gestisce invito e accoglienza. `scripts/check.mjs` controlla
+ora ogni HTML della radice e i collegamenti con ancore fra le due pagine.
+Il prompt e la provenienza del personaggio sono in `docs/GIAGUARO-MUSEO.md`.

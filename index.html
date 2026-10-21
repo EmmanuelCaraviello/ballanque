@@ -68,7 +68,7 @@
       >
       <nav class="nav-links" aria-label="Navigazione principale">
         <a href="#studio" data-nav-link="studio">Studio</a>
-        <a href="#museo" data-nav-link="museo">Museo</a>
+        <a href="museo.html" data-nav-link="museo">Museo</a>
         <a href="#commissiona" data-nav-link="commissiona">Contatti</a>
       </nav>
       <div class="nav-actions">
@@ -94,7 +94,7 @@
       </div>
     </header>
 
-    <!-- Contenuto: ingresso → studio → museo e lente → contatti. -->
+    <!-- Contenuto: ingresso → studio → invito al Museo → contatti. -->
     <main>
       <!-- Ingresso immediato: nessuna schermata preliminare o attesa obbligata. -->
       <section class="threshold" id="ingresso">
@@ -131,7 +131,7 @@
           dalla storia al campo.
         </p>
         <div class="hero-foot">
-          <a class="enter" href="#museo"><i></i>Entra nel museo</a>
+          <a class="enter" href="museo.html"><i></i>Entra nel museo</a>
           <a
             class="mono muted hide-s"
             href="https://www.instagram.com/ballanquefootball/"
@@ -215,213 +215,55 @@
       </section>
 
       <!-- Museo: i dati e le foto delle opere sono in assets/js/projects.js. -->
+      <!-- Invito al Museo: la visita completa si apre in una pagina dedicata. -->
       <section
-        class="museum"
+        class="museum-portal wrap"
         id="museo"
         data-nav-section="museo"
-        aria-label="Museo Ballanqué"
+        aria-labelledby="museumPortalTitle"
       >
-        <section class="room collection" id="collezione">
-          <div class="wrap">
-            <div class="room-head">
-              <span class="mono no">02 / Museo</span
-              ><span class="mono muted">La collezione Ballanqué</span>
-            </div>
-            <div class="coll-top">
-              <h2>
-                Identità in mostra<em
-                  >Il calcio, attraverso i nostri progetti.</em
-                >
-              </h2>
-            </div>
-            <p class="museum-intro">
-              Ogni maglia nasce da un club, da un territorio e da una comunità.
-              Percorri la parete e apri un progetto per esplorare divise,
-              dettagli e fotografie dal campo.
+        <div class="room-head">
+          <span class="mono">02 / Il Museo</span
+          ><span class="mono">Sette progetti. Una firma.</span>
+        </div>
+        <div class="museum-portal-grid">
+          <div class="museum-portal-copy">
+            <span class="mono">Archivio Ballanqué</span>
+            <h2 id="museumPortalTitle">
+              Il campo.<br />La nostra<br /><em>galleria.</em>
+            </h2>
+            <p>
+              Ogni club ha una storia. Ogni maglia la porta con sé. Entra nel
+              Museo e scopri le identità che abbiamo disegnato.
             </p>
-            <div
-              class="filters"
-              id="filters"
-              role="group"
-              aria-label="Filtra le divise"
+            <a class="museum-door mono" href="museo.html"
+              >Entra nel Museo <span aria-hidden="true">↗</span></a
+            ><span class="museum-portal-note mono"
+              >Divise · Dettagli · Storie dal campo</span
             >
-              <button class="pill mono" data-f="all" aria-pressed="true">
-                Tutte
-              </button>
-              <button class="pill mono" data-f="home" aria-pressed="false">
-                Home
-              </button>
-              <button class="pill mono" data-f="away" aria-pressed="false">
-                Away
-              </button>
-              <button class="pill mono" data-f="giocatore" aria-pressed="false">
-                Giocatore
-              </button>
-              <button class="pill mono" data-f="portiere" aria-pressed="false">
-                Portiere
-              </button>
-              <button class="pill mono" data-f="speciale" aria-pressed="false">
-                Edizioni speciali
-              </button>
-            </div>
           </div>
-          <div class="wall-stage" id="wallStage">
-            <div class="wall" id="wall">
-              <div class="track" id="track"></div>
-            </div>
-            <div class="wrap"></div>
-          </div>
-        </section>
-        <section
-          class="room canvas-room wrap"
-          id="tela"
-          style="padding-block: 0"
-        >
-          <div class="canvas-stage" id="canvasStage">
-            <div class="lens">
-              <div class="zoomer" id="zoomer">
-                <img
-                  src="assets/images/image-05.webp"
-                  alt="Maglia azzurra con colletto rosso, pattern di case a gradoni, stemma del club e marchio Ballanqué"
-                  width="3388"
-                  height="2768"
-                  decoding="async"
-                  loading="lazy"
-                />
-              </div>
-              <div class="reticle"></div>
-              <span class="mag mono" id="mag">× 1.0</span>
-            </div>
-            <div class="canvas-copy">
-              <div class="room-head" style="margin-bottom: 28px">
-                <span class="mono no">Dentro il progetto</span
-                ><span class="mono muted"
-                  >Opera osservata da vicino — Cremonese, 2026</span
-                >
-              </div>
-              <h2 class="canvas-title">
-                The shirt is the canvas<span class="mono" id="stepNo"
-                  >01 / 07</span
-                >
-              </h2>
-              <div class="lens-ctrl" id="lensCtrl">
-                <div class="lens-nav">
-                  <button
-                    class="varr"
-                    type="button"
-                    id="lensPrev"
-                    aria-label="Dettaglio precedente"
-                  >
-                    ←
-                  </button>
-                  <div
-                    class="lens-chips"
-                    id="lensChips"
-                    role="group"
-                    aria-label="Dettagli della maglia"
-                  >
-                    <button type="button" data-k="0" aria-current="true">
-                      Intera</button
-                    ><button type="button" data-k="1">Pattern</button
-                    ><button type="button" data-k="2">Stemma</button
-                    ><button type="button" data-k="3">Marchio</button
-                    ><button type="button" data-k="4">Colletto</button
-                    ><button type="button" data-k="5">Cucitura</button
-                    ><button type="button" data-k="6">Polsino</button>
-                  </div>
-                  <button
-                    class="varr"
-                    type="button"
-                    id="lensNext"
-                    aria-label="Dettaglio successivo"
-                  >
-                    →
-                  </button>
-                </div>
-                <span class="mono muted lens-hint"
-                  >Tocca la maglia o scorri col dito per il dettaglio
-                  successivo</span
-                >
-              </div>
-              <ol class="steps" id="steps" aria-live="polite">
-                <li class="cur">
-                  <span class="mono">I</span>
-                  <div>
-                    <strong>L'opera intera</strong
-                    ><span class="muted"
-                      >Azzurro, rosso e un filo d'oro. Prima si guarda da
-                      lontano.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">II</span>
-                  <div>
-                    <strong>Il pattern</strong
-                    ><span class="muted"
-                      >Case a gradoni, una sopra l'altra, disegnano una V sul
-                      petto. Il paese diventa trama.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">III</span>
-                  <div>
-                    <strong>Lo stemma</strong
-                    ><span class="muted"
-                      >Sul cuore, lo stemma del club: le righe dei colori
-                      sociali, il pallone, l'anno 2026.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">IV</span>
-                  <div>
-                    <strong>Il marchio</strong
-                    ><span class="muted"
-                      >Dall'altra parte del petto, il giaguaro Ballanqué. La
-                      firma del curatore.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">V</span>
-                  <div>
-                    <strong>Il colletto</strong
-                    ><span class="muted"
-                      >Girocollo rosso, interno azzurro chiaro, profilo
-                      d'oro.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">VI</span>
-                  <div>
-                    <strong>La cucitura</strong
-                    ><span class="muted"
-                      >Il taglio raglan è segnato da un filo d'oro che scende
-                      dal colletto fino al sottomanica.</span
-                    >
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">VII</span>
-                  <div>
-                    <strong>Il polsino</strong
-                    ><span class="muted"
-                      >Il bordo rosso chiude la manica, con lo stesso profilo
-                      d'oro del colletto.</span
-                    >
-                  </div>
-                </li>
-              </ol>
-              <p class="note">
-                Usa i pulsanti per osservare la maglia e i suoi dettagli. Puoi
-                continuare a scorrere in qualsiasi momento.
-              </p>
-            </div>
-          </div>
-        </section>
+          <a
+            class="museum-portal-art"
+            href="museo.html"
+            aria-label="Visita il Museo Ballanqué"
+            ><span class="portal-orbit" aria-hidden="true"></span
+            ><img
+              class="portal-kit portal-kit-back"
+              src="assets/images/image-08.webp"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            /><img
+              class="portal-kit portal-kit-front"
+              src="assets/images/image-06.webp"
+              alt="Anteprima della divisa Atletico BMG"
+              loading="lazy"
+              decoding="async"
+            /><span class="portal-plaque mono"
+              >Ballanqué / Progetti in mostra</span
+            ></a
+          >
+        </div>
       </section>
       <section
         class="room commission wrap"
@@ -517,7 +359,9 @@
       <div class="plan-body">
         <nav class="plan-list" aria-label="Sezioni del sito">
           <a href="#studio"><span class="mono">01</span><span>Studio</span></a>
-          <a href="#museo"><span class="mono">02</span><span>Museo</span></a>
+          <a href="museo.html"
+            ><span class="mono">02</span><span>Museo</span></a
+          >
           <a href="#commissiona"
             ><span class="mono">03</span><span>Contatti</span></a
           >

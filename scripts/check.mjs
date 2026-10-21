@@ -19,13 +19,23 @@ function checkReference(reference, directory, source) {
     errors.push(`${source}: risorsa assente ${reference}`);
 }
 
-const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-if (ids.length !== new Set(ids).size) errors.push("index.html: ID duplicati");
-for (const [, reference] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
-  if (reference.startsWith("#") && !ids.includes(reference.slice(1)))
-    errors.push(`Ancora assente: ${reference}`);
-  checkReference(reference, root, "index.html");
+for (const name of fs
+  .readdirSync(root)
+  .filter((name) => name.endsWith(".html"))) {
+  const html = fs.readFileSync(path.join(root, name), "utf8");
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  if (ids.length !== new Set(ids).size) errors.push(name + ": ID duplicati");
+  for (const [, reference] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+    if (reference.startsWith("#") && !ids.includes(reference.slice(1)))
+      errors.push(name + ": ancora assente " + reference);
+    checkReference(reference, root, name);
+    const crossPage = reference.match(/^([\w-]+\.html)#(.+)$/);
+    if (crossPage && fs.existsSync(path.join(root, crossPage[1]))) {
+      const target = fs.readFileSync(path.join(root, crossPage[1]), "utf8");
+      if (!target.includes('id="' + crossPage[2] + '"'))
+        errors.push(name + ": ancora assente " + reference);
+    }
+  }
 }
 
 for (const name of fs.readdirSync(path.join(root, "assets/js"))) {

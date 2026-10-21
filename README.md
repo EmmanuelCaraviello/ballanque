@@ -6,7 +6,8 @@ Il progetto usa HTML, CSS e JavaScript senza una fase di compilazione.
 ## Struttura
 
 ```text
-index.html                 Pagina principale e struttura semantica
+index.html                 Home: Studio, invito al Museo e contatti
+museo.html                 Accoglienza, parete dei progetti e lente
 assets/
   css/
     main.css               Punto di ingresso dei fogli di stile
@@ -17,6 +18,7 @@ assets/
     brand.css              Font ufficiali e regole finali del brand
     responsive.css         Telefono, iPad, touch e gallerie adattive
     motion.css             Maschere dei titoli e supporto al movimento ridotto
+    museum-entrance.css     Invito nella home, accoglienza e livelli delle maglie
     museum.css             Parete espositiva e ambienti responsive del Museo
     studio.css             Composizione dello Studio e controlli del segno animato
   js/
@@ -68,7 +70,7 @@ I controlli statici non sostituiscono la prova nel browser, su telefono e su iPa
 
 ## Pubblicare
 
-Caricare `index.html` e l'intera cartella `assets/`, conservando la struttura.
+Caricare `index.html`, `museo.html` e l'intera cartella `assets/`, conservando la struttura.
 Font Google e GSAP rimangono risorse esterne. Il contatto email apre il programma
 di posta del visitatore; il sito non invia email tramite un server.
 

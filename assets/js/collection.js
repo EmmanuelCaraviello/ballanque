@@ -42,7 +42,7 @@ WORKS.forEach(function (work, index) {
     <span class="museum-index mono" aria-hidden="true">${escape(work.n)} / ${String(WORKS.length).padStart(2, "0")} <span>Ballanqué · Archivio dei progetti</span></span>
     <span class="museum-composition">
       <span class="museum-echo" aria-hidden="true">${escape(work.n)}</span>
-      <span class="museum-piece"><img src="${escape(work.front)}" alt="${escape(work.club + ", " + work.title + ", fronte")}" loading="lazy" decoding="async"></span>
+      <span class="museum-piece"><img class="museum-silhouette" aria-hidden="true" src="${escape(work.front)}" alt="" loading="lazy" decoding="async"><img class="museum-underpaint" aria-hidden="true" src="${escape(work.front)}" alt="" loading="lazy" decoding="async"><img class="museum-finished" src="${escape(work.front)}" alt="${escape(work.club + ", " + work.title + ", fronte")}" loading="lazy" decoding="async"></span>
       ${photo && PH[photo[0]] ? `<span class="museum-detail" aria-hidden="true"><img src="${escape(PH[photo[0]])}" alt="" loading="lazy" decoding="async"><span class="mono">Dal campo</span></span>` : ""}
     </span>
     <span class="museum-caption">

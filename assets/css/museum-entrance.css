@@ -1,0 +1,338 @@
+/* Invito nella home e accoglienza del Museo, sempre a scorrimento libero. */
+.museum-portal {
+  background: var(--bone);
+  color: var(--ink);
+  padding-block: var(--room-pad);
+  overflow: clip;
+}
+.museum-portal .room-head {
+  border-color: rgba(38, 29, 24, 0.22);
+}
+.museum-portal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: center;
+  padding-block: 35px 12px;
+}
+.museum-portal-copy > .mono {
+  color: var(--clay);
+}
+.museum-portal h2,
+.museum-welcome h1 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(50px, 7.5vw, 112px);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+  margin: 24px 0;
+}
+.museum-portal h2 em,
+.museum-welcome h1 em {
+  font-style: normal;
+  color: var(--clay);
+}
+.museum-portal-copy p {
+  max-width: 40ch;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-top: 30px;
+}
+.museum-door {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-block: 20px;
+  border-bottom: 1px solid currentColor;
+  max-width: 350px;
+  margin-top: 30px;
+  text-decoration: none;
+}
+.museum-door span {
+  font-size: 30px;
+  line-height: 1;
+  transition: transform 0.5s;
+}
+.museum-door:hover span {
+  transform: translate(4px, -3px);
+}
+.museum-portal-note,
+.welcome-note {
+  display: block;
+  margin-top: 22px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.museum-portal-art {
+  position: relative;
+  display: block;
+  min-height: 560px;
+  color: var(--ink);
+}
+.portal-kit {
+  position: absolute;
+  width: 62%;
+  height: 79%;
+  top: 6%;
+  object-fit: contain;
+  filter: drop-shadow(0 26px 22px rgba(38, 29, 24, 0.18));
+}
+.portal-kit-back {
+  left: 1%;
+  transform: rotate(-13deg) scale(0.86);
+}
+.portal-kit-front {
+  right: 1%;
+  top: 13%;
+  transform: rotate(9deg);
+}
+.portal-orbit {
+  position: absolute;
+  inset: 5% 7% 12%;
+  border: 1px solid rgba(138, 50, 38, 0.28);
+  border-radius: 50% 50% 0 0;
+}
+.portal-plaque {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+}
+/* Il giaguaro appare solo nell'accoglienza: non segue la visita e non copre le opere. */
+.museum-welcome {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3vw;
+  align-items: center;
+  padding-top: 145px;
+  padding-bottom: 70px;
+  min-height: min(950px, 100svh);
+  overflow: clip;
+  background: var(--ink);
+}
+.welcome-copy {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 30px;
+}
+.museum-back {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 9px;
+}
+.welcome-kicker {
+  color: var(--ocher);
+  margin-top: 45px;
+}
+.museum-welcome h1 {
+  font-size: clamp(50px, 7.2vw, 108px);
+}
+.museum-welcome h1 em {
+  color: var(--ocher);
+}
+.welcome-lead {
+  max-width: 37ch;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-top: 25px;
+}
+.welcome-note {
+  color: var(--muted);
+}
+.welcome-stage {
+  position: relative;
+  align-self: stretch;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  min-height: 590px;
+  isolation: isolate;
+}
+.welcome-arch {
+  position: absolute;
+  inset: 4% 5% 5%;
+  border: 1px solid rgba(197, 137, 75, 0.4);
+  border-radius: 48% 48% 0 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(197, 137, 75, 0.14),
+    transparent 65%
+  );
+  z-index: -1;
+}
+.welcome-stage::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  width: 85%;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.3);
+  filter: blur(16px);
+  z-index: -1;
+}
+.museum-host {
+  display: block;
+  width: 100%;
+  height: 590px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.25));
+}
+.welcome-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--ocher);
+  font-size: 10px;
+}
+.welcome-plaque {
+  position: relative;
+  font-size: 10px;
+  padding-top: 20px;
+  color: var(--muted);
+  text-align: center;
+}
+.museum-page .collection {
+  scroll-margin-top: 80px;
+}
+/* Identica immagine e identiche coordinate per sagoma, base e divisa completa. */
+.museum-piece img {
+  position: absolute;
+  inset: 0;
+}
+.museum-piece .museum-silhouette {
+  filter: brightness(0) invert(1)
+    drop-shadow(0 24px 18px rgba(38, 29, 24, 0.14));
+}
+.museum-piece .museum-underpaint {
+  filter: grayscale(1) brightness(0.75);
+}
+.museum-piece .museum-finished {
+  position: relative;
+}
+@media (max-width: 1000px) {
+  .museum-portal-art {
+    min-height: 450px;
+  }
+  .museum-welcome {
+    padding-top: 125px;
+    min-height: 0;
+  }
+  .welcome-stage {
+    min-height: 460px;
+  }
+  .museum-host {
+    height: 460px;
+  }
+}
+@media (max-width: 600px) {
+  .museum-portal-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .museum-portal h2 {
+    font-size: clamp(48px, 13vw, 72px);
+  }
+  .museum-portal-art {
+    min-height: 350px;
+  }
+  .museum-portal-copy p {
+    font-size: 16px;
+  }
+  .museum-welcome {
+    grid-template-columns: 1fr;
+    padding-top: 110px;
+    padding-bottom: 45px;
+    gap: 5px;
+  }
+  .museum-welcome h1 {
+    font-size: clamp(48px, 13vw, 72px);
+  }
+  .welcome-copy {
+    padding-bottom: 5px;
+  }
+  .welcome-kicker {
+    margin-top: 30px;
+    font-size: 10px;
+  }
+  .welcome-lead {
+    font-size: 16px;
+  }
+  .welcome-stage {
+    min-height: 370px;
+  }
+  .museum-host {
+    height: 370px;
+  }
+  .welcome-number {
+    display: none;
+  }
+  .welcome-arch {
+    inset: 0 12% 5%;
+  }
+}
+/* Su telefono l'ospite affianca il titolo, così compare già nella prima schermata. */
+@media (max-width: 600px) {
+  .museum-welcome {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+  .welcome-copy {
+    display: contents;
+  }
+  .museum-back {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .welcome-kicker {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+  }
+  .museum-welcome h1 {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: center;
+    font-size: clamp(26px, 7.7vw, 42px);
+    margin-block: 12px;
+  }
+  .welcome-stage {
+    grid-column: 2;
+    grid-row: 3;
+    min-height: 245px;
+    align-self: center;
+  }
+  .museum-host {
+    height: 245px;
+  }
+  .welcome-plaque {
+    display: none;
+  }
+  .welcome-lead {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin-top: 12px;
+  }
+  .museum-welcome .museum-door {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .welcome-note {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    margin-top: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .museum-door span {
+    transition: none;
+  }
+  .museum-door:hover span {
+    transform: none;
+  }
+}

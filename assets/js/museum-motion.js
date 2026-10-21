@@ -85,14 +85,30 @@ export function initMuseumMotion(container, scroller = null) {
       animate(
         piece,
         [
-          {
-            opacity: 0,
-            transform: "translateY(65px) rotate(-5deg) scale(.93)",
-          },
-          { opacity: 1, transform: "translateY(0) rotate(0) scale(1)" },
+          { transform: "translateY(38px) rotate(-3deg) scale(.96)" },
+          { transform: "translateY(0) rotate(0) scale(1)" },
         ],
         0,
-        1800,
+        2400,
+      );
+      // Le tre copie della foto condividono taglio, dimensioni e trasparenza.
+      animate(
+        piece.querySelector(".museum-silhouette"),
+        [{ opacity: 0 }, { opacity: 1 }],
+        0,
+        1100,
+      );
+      animate(
+        piece.querySelector(".museum-underpaint"),
+        [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0 0 0)" }],
+        350,
+        2100,
+      );
+      animate(
+        piece.querySelector(".museum-finished"),
+        [{ clipPath: "inset(100% 0 0 0)" }, { clipPath: "inset(0 0 0 0)" }],
+        1050,
+        2700,
       );
       animate(
         caption,
@@ -113,6 +129,16 @@ export function initMuseumMotion(container, scroller = null) {
           380,
           1700,
         );
+    } else if (kind === "entrance") {
+      animate(
+        element,
+        [
+          { opacity: 0, transform: "translateY(45px) rotate(-2deg)" },
+          { opacity: 1, transform: "translateY(0) rotate(0)" },
+        ],
+        0,
+        1800,
+      );
     } else if (kind === "photo") {
       animate(
         element,
@@ -168,10 +194,11 @@ export function initMuseumMotion(container, scroller = null) {
     });
   }
   register(
-    "#studioTitle, #collezione .coll-top h2, #contactTitle, #expoTitle, .chap h3, .expo-end h3",
+    "#studioTitle, #museumPortalTitle, #museumWelcomeTitle, #collezione .coll-top h2, #contactTitle, #expoTitle, .chap h3, .expo-end h3",
     "title",
   );
   register(".museum-exhibit", "exhibit");
+  register(".museum-host, .museum-portal-art", "entrance");
   register(".expo-hero .viewer", "work");
   register(".pthumb", "photo");
   register(

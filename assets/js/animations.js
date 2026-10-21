@@ -6,7 +6,7 @@ import { $$, RM, hasG } from "./core.js";
 import { initMuseumMotion } from "./museum-motion.js";
 
 /* Ingresso diretto: animazione hero senza schermata o attesa iniziale. */
-if (hasG && !RM) {
+if (hasG && !RM && document.getElementById("heroTitle")) {
   heroIn(0);
 }
 
