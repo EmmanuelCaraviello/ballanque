@@ -15,11 +15,17 @@
 
 ## Illustrazione dello Studio
 
-Il canvas racconta il metodo in un ciclo finito di dodici secondi: maglia neutra,
-blu di base, pattern e dettagli originali della home Atletico BMG.
-Usa `assets/images/image-06.webp` senza modificare il file: due livelli preparati
-nel browser riutilizzano la trasparenza della maglia per le fasi neutra e blu;
-lo svelamento finale mostra l'immagine originale, con stemmi e dettagli reali.
+Il canvas racconta il metodo in una sequenza finita di diciotto secondi:
+Ascoltiamo traccia la sagoma su una tela vuota; Esploriamo dipinge strisce blu
+e logo; Disegniamo svela la divisa originale Atletico BMG.
+`studio.js` gestisce tempo, visibilità, pausa e preferenze; `studio-scene.js`
+disegna tela, personaggio e pennellate. Il pennello segue il punto dipinto.
+La sagoma bianca è disegnata nel canvas, senza una fotografia in trasparenza.
+L'immagine finale è `assets/images/image-06.webp`, il logo `image-03.webp`.
+Il personaggio usa `jaguar-artist-atlas-v1.png`: corpo e braccio sono separati
+nello stesso atlante, animati con rotazioni e spostamenti nel canvas.
+Non sostituire l'atlante senza aggiornare i ritagli in `studio-scene.js`.
+La mascotte è una libera interpretazione creativa, non una ricostruzione storica.
 Non genera o configura una nuova divisa.
 Parte quando il canvas entra in vista, si ferma fuori schermo o quando la scheda
 del browser non è visibile, e può essere messo in pausa o rivisto.

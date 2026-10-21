@@ -1,8 +1,10 @@
 /**
- * Illustrazione dello Studio: la home Atletico BMG passa da neutra a colorata in dodici secondi.
+ * Illustrazione dello Studio: il giaguaro-artista dipinge la home Atletico BMG in tre scene.
  * È un racconto grafico del metodo, non un configuratore di prodotti.
  * Il ciclo è finito, si ferma fuori schermo e offre pausa e ripetizione.
  */
+import { createStudioScene } from "./studio-scene.js";
+
 const canvas = document.getElementById("studioCanvas");
 if (canvas) initStudio(canvas);
 
@@ -16,105 +18,22 @@ function initStudio(surface) {
   const replay = section.querySelector("#studioMotionReplay");
   const steps = [...section.querySelectorAll("[data-studio-step]")];
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const duration = 12000;
+  const duration = 18000;
   let progress = preference.matches ? 1 : 0;
   let visible = false;
   let paused = false;
   let frame = 0;
   let lastTime = 0;
   let currentStep = -1;
-  // L'immagine originale conserva esattamente sagoma, pattern e stemmi del progetto.
-  const shirt = new Image();
-  const neutral = document.createElement("canvas");
-  const blue = document.createElement("canvas");
   let ready = false;
+  const scene = createStudioScene(surface);
 
-  /** Crea una base neutra e una blu usando soltanto la trasparenza della stessa maglia. */
-  function prepareLayers() {
-    neutral.width = blue.width = shirt.naturalWidth;
-    neutral.height = blue.height = shirt.naturalHeight;
-    const whiteContext = neutral.getContext("2d");
-    const blueContext = blue.getContext("2d");
-    whiteContext.drawImage(shirt, 0, 0);
-    whiteContext.globalCompositeOperation = "source-in";
-    whiteContext.fillStyle = "#F4F4F4";
-    whiteContext.fillRect(0, 0, neutral.width, neutral.height);
-    // Un'ombra molto tenue mantiene leggibili volume e cuciture senza mostrare il pattern.
-    whiteContext.globalCompositeOperation = "source-atop";
-    whiteContext.globalAlpha = 0.1;
-    whiteContext.filter = "grayscale(1)";
-    whiteContext.drawImage(shirt, 0, 0);
-    blueContext.drawImage(shirt, 0, 0);
-    blueContext.globalCompositeOperation = "source-in";
-    blueContext.fillStyle = "#1b2150";
-    blueContext.fillRect(0, 0, blue.width, blue.height);
-    ready = true;
-    draw();
-    updateControls();
-    resume();
-  }
-
-  /** Rende morbido l'inizio e la fine di ogni passaggio, lasciando brevi pause visive. */
-  function phase(value, start, end) {
-    const t = Math.max(0, Math.min(1, (value - start) / (end - start)));
-    return t * t * (3 - 2 * t);
-  }
-
-  /** Svela un livello dentro la sagoma con un fronte di colore leggermente ondulato. */
-  function revealLayer(image, amount, x, y, width, height) {
-    if (amount <= 0) return;
-    if (amount >= 1) {
-      context.drawImage(image, x, y, width, height);
-      return;
-    }
-    const edge = y - height * 0.06 + amount * height * 1.12;
-    context.save();
-    context.beginPath();
-    context.moveTo(x, y - height * 0.1);
-    context.lineTo(x + width, y - height * 0.1);
-    context.lineTo(x + width, edge);
-    for (let i = 60; i >= 0; i--) {
-      const ratio = i / 60;
-      context.lineTo(
-        x + ratio * width,
-        edge + Math.sin(ratio * Math.PI * 2) * height * 0.025,
-      );
-    }
-    context.closePath();
-    context.clip();
-    context.drawImage(image, x, y, width, height);
-    context.restore();
-  }
-
-  /** Ridisegna i livelli alla risoluzione del dispositivo, senza alterare il file originale. */
+  /** Sincronizza la scena del pittore con le tre fasi del metodo. */
   function draw() {
     if (!ready) return;
-    // Anche un ridimensionamento deve rispettare la preferenza appena cambiata.
     if (preference.matches) progress = 1;
-    const box = surface.getBoundingClientRect();
-    if (!box.width || !box.height) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const pixelWidth = Math.round(box.width * dpr),
-      pixelHeight = Math.round(box.height * dpr);
-    if (surface.width !== pixelWidth || surface.height !== pixelHeight) {
-      surface.width = pixelWidth;
-      surface.height = pixelHeight;
-    }
-    context.setTransform(dpr, 0, 0, dpr, 0, 0);
-    context.clearRect(0, 0, box.width, box.height);
-    const fit = Math.min(
-      (box.width * 0.94) / shirt.naturalWidth,
-      (box.height * 0.9) / shirt.naturalHeight,
-    );
-    const width = shirt.naturalWidth * fit,
-      height = shirt.naturalHeight * fit;
-    const x = (box.width - width) / 2,
-      y = (box.height - height) / 2;
-    context.drawImage(neutral, x, y, width, height);
-    // 0–1.7 s: maglia neutra; 1.7–5.8 s: blu; pausa; 6.7–11.2 s: pattern originale.
-    revealLayer(blue, phase(progress, 0.14, 0.48), x, y, width, height);
-    revealLayer(shirt, phase(progress, 0.56, 0.93), x, y, width, height);
-    const step = progress < 0.14 ? 0 : progress < 0.56 ? 1 : 2;
+    scene.render(progress);
+    const step = progress < 0.33 ? 0 : progress < 0.69 ? 1 : 2;
     if (step !== currentStep) {
       currentStep = step;
       steps.forEach((element, index) =>
@@ -235,16 +154,18 @@ function initStudio(surface) {
   }
   if ("ResizeObserver" in window) new ResizeObserver(draw).observe(surface);
   else window.addEventListener("resize", draw);
-  shirt.addEventListener("load", prepareLayers, { once: true });
-  shirt.addEventListener(
-    "error",
-    function () {
+  scene.ready
+    .then(function () {
+      ready = true;
+      draw();
+      updateControls();
+      resume();
+    })
+    .catch(function () {
+      // Un asset mancante non deve impedire di leggere lo Studio o navigare nel sito.
       controls.hidden = true;
       section.querySelector(".studio-art").hidden = true;
-    },
-    { once: true },
-  );
-  shirt.src = "assets/images/image-06.webp";
+    });
   draw();
   updateControls();
   resume();

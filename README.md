@@ -30,7 +30,8 @@ assets/
     cursor.js              Cursore decorativo per il mouse
     animations.js          Animazioni di ingresso e comparsa
     museum-motion.js       Titoli, opere e fotografie che compaiono scorrendo
-    studio.js              Illustrazione da filo a trama e sagoma, con pausa
+    studio.js              Tempi, pausa e accessibilità del racconto dello Studio
+    studio-scene.js        Giaguaro pittore, tela e pennellate nel canvas
   images/                  Logo, divise, foto e anteprima social
 docs/
   MANUTENZIONE.md          Dipendenze, convenzioni e guida agli interventi

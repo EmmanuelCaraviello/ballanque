@@ -62,7 +62,8 @@
 }
 .studio-art-stage {
   position: relative;
-  aspect-ratio: 1;
+  /* La scena completa include artista e cavalletto, con proporzioni da piccolo palcoscenico. */
+  aspect-ratio: 4 / 3;
   background: radial-gradient(
     ellipse at 50% 58%,
     rgba(197, 137, 75, 0.1),
