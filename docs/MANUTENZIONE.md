@@ -132,7 +132,7 @@ listener del mouse sono stati rimossi.
 progetti e la lente. Entrambe le pagine restano nella radice per gli hosting statici.
 `main.js` importa schede e lente soltanto dove sono presenti i rispettivi contenitori.
 Il giaguaro invita dalla home con la maglia staff fornita dal cliente; nell'accoglienza del Museo
-indossa la BMG. Non compare lungo la parete delle opere e non impone attese.
+indossa la stessa maglia staff. Non compare lungo la parete delle opere e non impone attese.
 I collegamenti a Studio e Contatti tornano alle sezioni della home.
 
 La creazione di ogni divisa usa tre copie della stessa foto (sagoma, base tonale,
@@ -161,10 +161,22 @@ ridotto tutti gli elementi restano visibili nel loro stato finale.
 
 La prima schermata usa `.hero-canvas` con trama fotografica di lino
 `artist-linen-v1.png`, bordo e spessore del telaio. Il titolo originale è centrato;
-la firma Ballanqué resta in basso a destra e il link al Museo è disponibile subito.
+la firma Ballanqué resta in basso a destra. La visita al Museo parte dalla sezione
+invito o dalla navigazione, senza un ulteriore pulsante sulla tela iniziale.
 `hero-canvas.js` suddivide le righe in parole senza duplicarne il contenuto:
 le parole arrivano con un impatto breve e schizzi SVG coordinati, anziché una tendina.
 Le maschere decorative hanno aria-hidden e non intercettano il puntatore.
 La sequenza finisce entro 4,35 secondi, senza loop o blocchi dello scroll.
 Con movimento ridotto e senza Web Animations il titolo rimane subito completo.
 Il cambio di preferenza cancella gli ingressi già avviati. L'effetto non dipende da GSAP.
+
+
+## Pulsanti e accoglienza
+
+Il giaguaro interno del Museo riutilizza `jaguar-portal-staff-v1.png`, come l'invito.
+Le azioni di contatto sono etichettate «Contattaci», compresa quella in fondo
+alla scheda progetto. Quest'ultima apre `index.html#commissiona` con navigazione
+nativa, senza cercare una sezione assente nella pagina Museo.
+Sui telefoni fino a 380 px il nome esteso nella barra lascia spazio ai controlli;
+il logo conserva il nome accessibile. Esc chiude il menu anche se il focus non
+è ancora passato al primo collegamento durante l'apertura.

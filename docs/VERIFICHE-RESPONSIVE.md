@@ -126,3 +126,10 @@ al movimento ridotto. Titolo disponibile anche con GSAP e ScrollTrigger bloccati
 Verificati caricamento della nuova illustrazione e collegamento al Museo a
 320, 390, 834, 1194 e 1440 px. Controllata visivamente la cattura desktop:
 maniche lunghe, verde/avorio e marchio giallo coerenti con il riferimento del cliente.
+
+
+## Contattaci e maglia staff interna — 21 ottobre 2026
+
+Chrome a 320, 390, 834, 1194 e 1440 px: nessun overflow dell'header, maglia staff
+caricata nel Museo, vecchio pulsante della hero rimosso. Verificati menu con Esc
+e percorso dalla scheda progetto a `index.html#commissiona`, senza errori JavaScript.

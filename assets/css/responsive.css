@@ -362,3 +362,22 @@
     transition: none;
   }
 }
+
+/* Su telefoni stretti il nome esteso lascia spazio al pulsante Contattaci. */
+@media (max-width: 380px) {
+  .nav .brand b {
+    display: none;
+  }
+  .nav .brand {
+    gap: 0;
+  }
+  .nav .brand .logo {
+    width: 20px;
+  }
+  .nav {
+    gap: 10px;
+  }
+  .nav-actions {
+    gap: 8px;
+  }
+}

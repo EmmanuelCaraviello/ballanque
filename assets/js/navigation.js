@@ -36,8 +36,8 @@ function closePlan() {
 planBtn.addEventListener("click", openPlan);
 $("#planClose").addEventListener("click", closePlan);
 // Esc chiude il menu anche nella home, dove il modulo delle schede non è caricato.
-plan.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") closePlan();
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && plan.classList.contains("open")) closePlan();
 });
 $$("#plan a[href^='#']").forEach(function (a) {
   a.addEventListener("click", function (e) {

@@ -96,7 +96,7 @@ function openExpo(i) {
     next +
     '">Mostra successiva: ' +
     WORKS[next].title +
-    ' →</button><a class="pill solid mono" href="#commissiona" data-close-to="commissiona">Start a project →</a></div></div>';
+    ' →</button><a class="pill solid mono" href="index.html#commissiona">Contattaci →</a></div></div>';
   expo.classList.add("open");
   setInert(true);
   document.documentElement.style.overflow = "hidden";
