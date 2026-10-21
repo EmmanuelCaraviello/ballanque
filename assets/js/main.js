@@ -9,3 +9,4 @@ import "./collection.js";
 import "./exhibition.js";
 import "./lens.js";
 import "./animations.js";
+import "./studio.js";

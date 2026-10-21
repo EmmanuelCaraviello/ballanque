@@ -17,3 +17,11 @@ rifiniture telefono/iPad e prima sequenza di animazioni del Museo.
 Le modifiche preesistenti a `index.html` e la cancellazione di `LEGGIMI.txt`
 sono rimaste fuori dai commit degli interventi: conservarle durante la ripresa.
 Non è stata pubblicata una nuova versione del sito online.
+
+## Aggiornamento del 21 ottobre
+
+Scelta la direzione del Museo teatrale, ancora da implementare.
+Prima revisione dello Studio completata: testi sintetici, illustrazione finita
+da filo a trama e sagoma, pausa e ripetizione, composizione responsive.
+Il prossimo intervento concordato riguarda il ritmo generale delle animazioni;
+il Museo avrà poi un commit dedicato.

@@ -11,6 +11,17 @@
 - **Animazioni:** ingresso in `animations.js`, sequenze del Museo in `museum-motion.js`,
   maschere in `motion.css`; cursore separato in `cursor.js`.
 - **Menu e accessibilità:** `navigation.js` e `dialogs.js`.
+- **Segno animato dello Studio:** `studio.js`, composizione e controlli in `studio.css`.
+
+## Illustrazione dello Studio
+
+Il canvas racconta il metodo in un ciclo finito di otto secondi: filo, trama,
+sagoma. Non genera una divisa e non usa dati dei progetti del Museo.
+Parte quando il canvas entra in vista, si ferma fuori schermo o quando la scheda
+del browser non è visibile, e può essere messo in pausa o rivisto.
+`ResizeObserver` ridisegna il punto corrente dopo un cambio di dimensioni.
+Con movimento ridotto viene mostrato subito il risultato completo.
+I testi delle tre fasi restano sempre leggibili e indipendenti dall'animazione.
 
 ## Dati del Museo
 

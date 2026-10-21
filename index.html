@@ -148,6 +148,7 @@
           >
         </div>
       </section>
+      <!-- Studio: il segno illustrato racconta il metodo; non genera una divisa. -->
       <section
         class="room studio wrap"
         id="studio"
@@ -155,49 +156,66 @@
         aria-labelledby="studioTitle"
       >
         <div class="room-head">
-          <span class="mono no">01 / Studio</span
-          ><span class="mono muted">Football Club Identity &amp; Culture</span>
+          <span class="mono no">01 / Studio</span>
+          <span class="mono muted">Dall'ascolto al disegno</span>
         </div>
-        <div class="studio-intro">
-          <h2 id="studioTitle">From idea<br />to identity.</h2>
-          <div class="studio-copy">
-            <p>
-              Non creiamo solo maglie. Lavoriamo con i club per costruire quello
-              che viene prima e dopo la maglia: un'identità.
-            </p>
-            <p>
-              Ballanqué è un atelier di identità calcistica. Partiamo dalla
-              storia, dai colori, dal territorio e dalle persone che tengono in
-              vita un club e li traduciamo in un linguaggio visivo che si può
-              indossare.
+        <div class="studio-story">
+          <div class="studio-story-copy">
+            <h2 id="studioTitle">Prima una storia.<br />Poi un segno.</h2>
+            <p class="studio-story-lead">
+              Ascoltiamo il club. Cerchiamo nel territorio i segni che gli
+              appartengono. Li trasformiamo in un'identità da portare in campo.
             </p>
             <p class="mono studio-services">
               Ricerca · Identità visiva · Design delle divise
             </p>
+            <div class="studio-method" aria-label="Il nostro metodo">
+              <div class="studio-method-step" data-studio-step="0">
+                <span class="mono">01 / Listen</span>
+                <h3>Ascoltiamo.</h3>
+                <p>La storia del club e delle sue persone.</p>
+              </div>
+              <div class="studio-method-step" data-studio-step="1">
+                <span class="mono">02 / Discover</span>
+                <h3>Esploriamo.</h3>
+                <p>Colori, luoghi e segni del territorio.</p>
+              </div>
+              <div class="studio-method-step" data-studio-step="2">
+                <span class="mono">03 / Design</span>
+                <h3>Disegniamo.</h3>
+                <p>Una trama riconoscibile, da indossare.</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="phases compact-phases" id="phases">
-          <div class="phase">
-            <h3><small>01 / Listen</small>Ascoltiamo.</h3>
-            <p>
-              Conosciamo il club e le sue persone. Prima di disegnare,
-              ascoltiamo chi lo tiene in vita.
-            </p>
-          </div>
-          <div class="phase">
-            <h3><small>02 / Discover</small>Esploriamo.</h3>
-            <p>
-              Studiamo storia e territorio: archivi, fotografie, architetture e
-              strade intorno al campo.
-            </p>
-          </div>
-          <div class="phase">
-            <h3><small>03 / Design</small>Disegniamo.</h3>
-            <p>
-              Trasformiamo la storia in colori, pattern, simboli e dettagli
-              della divisa.
-            </p>
-          </div>
+          <figure
+            class="studio-art"
+            aria-label="Dal filo alla trama: illustrazione del processo creativo"
+          >
+            <div class="studio-art-stage">
+              <canvas id="studioCanvas" aria-hidden="true"></canvas>
+            </div>
+            <figcaption>
+              <span class="mono">Storia → Trama → Identità</span>
+              <p>Ogni identità comincia da un segno.</p>
+            </figcaption>
+            <!-- I comandi compaiono solo se il browser può disegnare e animare. -->
+            <div class="studio-art-controls" hidden>
+              <button
+                class="studio-motion-button"
+                id="studioMotionToggle"
+                type="button"
+              >
+                Pausa
+              </button>
+              <button
+                class="studio-motion-button"
+                id="studioMotionReplay"
+                type="button"
+              >
+                Rivedi il segno ↻
+              </button>
+            </div>
+          </figure>
         </div>
       </section>
 

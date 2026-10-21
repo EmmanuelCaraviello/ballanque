@@ -33,3 +33,10 @@ simulato su telefono e iPad, senza overflow o errori JavaScript.
 Su desktop sono stati verificati avvio dei titoli mascherati, comparsa delle opere,
 svelamento delle miniature fotografiche e arresto delle animazioni passando
 alla preferenza di movimento ridotto durante la visita.
+
+## Studio animato — 21 ottobre 2026
+
+Verificato in Chrome a 390 × 844, 834 × 1194 e 1440 × 1000 pixel CSS:
+avanzamento da filo a trama, pausa stabile, ripetizione e passaggio a movimento
+ridotto con risultato completo. Nessun overflow orizzontale o errore JavaScript.
+Controllate visivamente le catture di telefono e desktop.

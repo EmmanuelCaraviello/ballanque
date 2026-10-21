@@ -17,6 +17,7 @@ assets/
     brand.css              Font ufficiali e regole finali del brand
     responsive.css         Telefono, iPad, touch e gallerie adattive
     motion.css             Maschere dei titoli e supporto al movimento ridotto
+    studio.css             Composizione dello Studio e controlli del segno animato
   js/
     main.js                Punto di ingresso dei moduli JavaScript
     core.js                Selettori DOM e disponibilità delle animazioni
@@ -29,6 +30,7 @@ assets/
     cursor.js              Cursore decorativo per il mouse
     animations.js          Animazioni di ingresso e comparsa
     museum-motion.js       Titoli, opere e fotografie che compaiono scorrendo
+    studio.js              Illustrazione da filo a trama e sagoma, con pausa
   images/                  Logo, divise, foto e anteprima social
 docs/
   MANUTENZIONE.md          Dipendenze, convenzioni e guida agli interventi
