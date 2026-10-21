@@ -83,3 +83,10 @@ apertura e chiusura delle opere restano disponibili, senza errori JavaScript.
 Ripetute le prove su telefono dopo l'affiancamento del giaguaro al titolo.
 Controllate le catture di home, accoglienza e prima opera su desktop e telefono.
 Non sono prove su dispositivi fisici o su Safari iOS.
+
+## Giaguaro nell'invito della home — 21 ottobre 2026
+
+Chrome a 390 × 844, 834 × 1194 e 1440 × 1000: immagine caricata,
+collegamento «Seguimi nel Museo» funzionante e asset differenti fra home e Museo.
+Nessun overflow orizzontale o errore JavaScript rilevato. Controllata visivamente
+la composizione desktop con gesto rivolto al testo dell'invito.

@@ -131,7 +131,8 @@ listener del mouse sono stati rimossi.
 `index.html` contiene l'invito breve; `museo.html` ospita l'accoglienza, tutti i
 progetti e la lente. Entrambe le pagine restano nella radice per gli hosting statici.
 `main.js` importa schede e lente soltanto dove sono presenti i rispettivi contenitori.
-Il giaguaro compare solo nell'accoglienza del Museo, senza gate o attese obbligate.
+Il giaguaro invita dalla home con la divisa Cremonese; nell'accoglienza del Museo
+indossa la BMG. Non compare lungo la parete delle opere e non impone attese.
 I collegamenti a Studio e Contatti tornano alle sezioni della home.
 
 La creazione di ogni divisa usa tre copie della stessa foto (sagoma, base tonale,
