@@ -188,8 +188,8 @@ Privacy, Cookie e Note legali sono HTML separati, collegati soltanto dal footer
 in tutte le pagine; non compaiono nella navigazione principale. Il contenuto standard è dichiarato bozza e i dati
 sconosciuti sono campi da compilare; non usare dati aziendali inventati.
 Le pagine sono `noindex,follow` fino alla revisione. `legal.css` gestisce indice,
-leggibilità, tabelle, footer e menu esteso. Per evitare sovrapposizioni, sotto
-1100 px si usa il menu con tutte le voci.
+leggibilità, tabelle e footer. La pianta è gestita da `museum-map.css`; i tre
+collegamenti principali dell’header restano visibili sopra 820 px.
 Il codice locale non integra analytics, pixel o scritture in cookie/localStorage.
 Non è stata aggiunta una gestione fittizia del consenso. Prima di pubblicare,
 verificare hosting e dominio effettivo e aggiornare l'informativa o introdurre
@@ -201,3 +201,17 @@ Dati da raccogliere e fonti sono elencati in `docs/REVISIONE-LEGALI.md`.
 
 Le informative restano accessibili nei tre collegamenti in fondo a ogni pagina.
 La navigazione principale è riservata a Studio, Museo e Contatti.
+
+
+## Menu come pianta del sito
+
+Il pulsante «Mappa» apre quattro stanze HTML cliccabili: Ingresso, Studio, Museo
+e Contatti. `museum-map.css` costruisce pareti, aperture e corridoio: il desktop
+usa una pianta estesa, il telefono una composizione 2 × 2 senza trascinamento.
+Le informative rimangono nel footer, separate dal percorso espositivo.
+`navigation.js` aggiorna aria-current e l'indicazione «Sei qui» in base alla pagina
+e alla sezione visibile. L'apertura porta il focus nel dialogo senza spostare la
+vista dall'insieme della pianta. Tab resta nel menu, Esc e Chiudi ripristinano il
+focus su Mappa. I collegamenti interni chiudono il dialogo e portano il focus
+alla sezione scelta; gli altri usano normali URL fra pagine.
+Gli ingressi delle stanze sono brevi e disattivati con movimento ridotto.

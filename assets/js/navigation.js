@@ -1,5 +1,5 @@
 /**
- * Gestisce menu, chiusura e collegamenti alle tre sezioni principali.
+ * Gestisce pianta, stato della sala corrente, focus e collegamenti del sito.
  * I percorsi delle immagini sono relativi a index.html.
  */
 import { $, $$, RM } from "./core.js";
@@ -16,14 +16,14 @@ window.addEventListener(
   },
   { passive: true },
 );
-/** Apre il menu e sposta il focus sul primo collegamento. */
+/** Apre la pianta e sposta il focus nel dialogo. */
 function openPlan() {
   plan.classList.add("open");
   setInert(true);
   planBtn.setAttribute("aria-expanded", "true");
   document.documentElement.style.overflow = "hidden";
-  var first = $("a", plan);
-  if (first) first.focus();
+  // Il focus sulla pianta ne annuncia il titolo senza scorrere via dall'insieme.
+  plan.focus({ preventScroll: true });
 }
 /** Chiude il menu, ripristina lo scroll e riporta il focus al pulsante. */
 function closePlan() {
@@ -50,12 +50,39 @@ $$("#plan a[href^='#']").forEach(function (a) {
     target.focus({ preventScroll: true });
   });
 });
+/** Evidenzia la sala corrente con testo e aria-current, senza affidarsi al solo colore. */
+function markRoom(id) {
+  const labels = {
+    ingresso: "Ingresso",
+    studio: "Studio",
+    museo: "Museo",
+    commissiona: "Contatti",
+  };
+  $$("[data-map-room]", plan).forEach(function (room) {
+    if (room.dataset.mapRoom === id)
+      room.setAttribute("aria-current", "location");
+    else room.removeAttribute("aria-current");
+  });
+  const status = $(".map-location", plan);
+  if (status)
+    status.textContent = labels[id]
+      ? "Sei qui / " + labels[id]
+      : "Visita libera";
+}
+markRoom(
+  document.body.classList.contains("museum-page")
+    ? "museo"
+    : document.getElementById("ingresso")
+      ? "ingresso"
+      : "",
+);
 if ("IntersectionObserver" in window) {
   var navIO = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var id = e.target.dataset.navSection;
+        var id = e.target.dataset.navSection || e.target.id;
+        markRoom(id);
         $$("[data-nav-link]").forEach(function (a) {
           var active = a.dataset.navLink === id;
           a.classList.toggle("on", active);
@@ -66,7 +93,7 @@ if ("IntersectionObserver" in window) {
     },
     { rootMargin: "-15% 0px -55% 0px" },
   );
-  $$("[data-nav-section]").forEach(function (section) {
+  $$("#ingresso, [data-nav-section]").forEach(function (section) {
     navIO.observe(section);
   });
 }

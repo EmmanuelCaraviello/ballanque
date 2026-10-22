@@ -20,15 +20,6 @@
   display: inline-flex;
   align-items: center;
 }
-/* Sei voci nel menu: l'inizio resta raggiungibile anche su schermi bassi. */
-.site-menu .plan-body {
-  align-items: flex-start;
-  padding-top: 18px;
-}
-.site-menu .plan-list a {
-  font-size: clamp(23px, 3vw, 40px);
-  padding-block: 13px;
-}
 .legal-main {
   padding-top: 145px;
   padding-bottom: 90px;

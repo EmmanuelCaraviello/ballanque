@@ -81,9 +81,10 @@
           type="button"
           aria-haspopup="dialog"
           aria-controls="plan"
+          aria-label="Apri la pianta del sito"
           aria-expanded="false"
         >
-          Menu
+          Mappa
         </button>
         <a class="pill solid mono hide-s" href="index.html#commissiona"
           >Contattaci →</a
@@ -210,41 +211,99 @@
     ></div>
 
     <!-- Menu accessibile. Apertura e focus sono gestiti da navigation.js e dialogs.js. -->
+    <!-- Pianta accessibile: quattro collegamenti reali, senza percorso obbligato. -->
     <div
-      class="plan site-menu"
+      class="plan site-menu museum-map"
       id="plan"
       role="dialog"
       aria-modal="true"
-      aria-label="Menu principale"
+      aria-labelledby="mapTitle"
+      tabindex="-1"
     >
       <div class="plan-top">
-        <span class="mono">Ballanqué Football™</span
+        <span class="mono">Ballanqué Football™ / La pianta</span
         ><button class="pill mono" id="planClose" type="button">
           Chiudi ✕
         </button>
       </div>
       <div class="plan-body">
-        <nav class="plan-list" aria-label="Sezioni del sito">
-          <a href="index.html#studio"
-            ><span class="mono">01</span><span>Studio</span></a
-          >
-          <a href="museo.html"
-            ><span class="mono">02</span><span>Museo</span></a
-          >
-          <a href="index.html#commissiona"
-            ><span class="mono">03</span><span>Contatti</span></a
-          >
-          <a href="privacy.html"
-            ><span class="mono">04</span><span>Privacy</span></a
-          ><a href="cookie.html"
-            ><span class="mono">05</span><span>Cookie</span></a
-          ><a href="note-legali.html"
-            ><span class="mono">06</span><span>Note legali</span></a
-          >
-        </nav>
+        <div class="map-shell">
+          <div class="map-intro">
+            <div>
+              <span class="mono map-kicker">Quattro sale. Un’identità.</span>
+              <h2 id="mapTitle">Scegli da dove<br />entrare.</h2>
+            </div>
+            <p>
+              Esplora lo Studio, visita il Museo o raccontaci il tuo club. Ogni
+              sala è un punto di partenza.
+            </p>
+          </div>
+          <nav class="map-board" aria-label="Pianta delle sezioni del sito">
+            <span class="map-board-label mono" aria-hidden="true"
+              >B / Planimetria</span
+            ><svg
+              class="map-floor-route"
+              viewBox="0 0 1000 620"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M225 520V330H510V150H790V510" /></svg
+            ><a
+              class="map-room map-room-ingresso"
+              data-map-room="ingresso"
+              href="index.html#ingresso"
+              ><span class="map-room-no mono">00 / Sala</span
+              ><strong>Ingresso</strong
+              ><span class="map-room-description">L’identità prende forma</span
+              ><span class="map-room-icon" aria-hidden="true"
+                ><i></i><i></i><i></i></span
+              ><span class="map-room-here mono">Sei qui</span
+              ><span class="map-room-arrow" aria-hidden="true">↗</span></a
+            ><a
+              class="map-room map-room-studio"
+              data-map-room="studio"
+              href="index.html#studio"
+              ><span class="map-room-no mono">01 / Sala</span
+              ><strong>Studio</strong
+              ><span class="map-room-description">Dalla storia al disegno</span
+              ><span class="map-room-icon" aria-hidden="true"
+                ><i></i><i></i><i></i></span
+              ><span class="map-room-here mono">Sei qui</span
+              ><span class="map-room-arrow" aria-hidden="true">↗</span></a
+            ><a
+              class="map-room map-room-museo"
+              data-map-room="museo"
+              href="museo.html"
+              ><span class="map-room-no mono">02 / Sala</span
+              ><strong>Museo</strong
+              ><span class="map-room-description"
+                >Le opere e i loro dettagli</span
+              ><span class="map-room-icon" aria-hidden="true"
+                ><i></i><i></i><i></i></span
+              ><span class="map-room-here mono">Sei qui</span
+              ><span class="map-room-arrow" aria-hidden="true">↗</span></a
+            ><a
+              class="map-room map-room-commissiona"
+              data-map-room="commissiona"
+              href="index.html#commissiona"
+              ><span class="map-room-no mono">03 / Sala</span
+              ><strong>Contatti</strong
+              ><span class="map-room-description">Parliamo del tuo club</span
+              ><span class="map-room-icon" aria-hidden="true"
+                ><i></i><i></i><i></i></span
+              ><span class="map-room-here mono">Sei qui</span
+              ><span class="map-room-arrow" aria-hidden="true">↗</span></a
+            ><span class="map-north mono" aria-hidden="true">↑ N</span>
+          </nav>
+          <div class="map-caption">
+            <span class="map-location mono" role="status" aria-live="polite"
+              >Visita libera</span
+            ><span>Seleziona una sala per raggiungerla.</span>
+          </div>
+        </div>
       </div>
     </div>
-
     <div class="toast mono" id="toast" role="status"></div>
 
     <!-- Librerie di animazione esterne; il sito conserva le funzioni essenziali anche se non caricano. -->

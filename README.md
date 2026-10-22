@@ -23,7 +23,8 @@ assets/
     motion.css             Maschere dei titoli e supporto al movimento ridotto
     museum-entrance.css     Invito nella home, accoglienza e livelli delle maglie
     museum.css             Parete espositiva e ambienti responsive del Museo
-    legal.css              Pagine informative e menu con collegamenti legali
+    legal.css              Pagine informative e collegamenti nel footer
+    museum-map.css         Pianta del menu, stanze e sala corrente
     hero-canvas.css        Tela tipografica iniziale e firma del brand
     studio.css             Composizione dello Studio e controlli del segno animato
   js/

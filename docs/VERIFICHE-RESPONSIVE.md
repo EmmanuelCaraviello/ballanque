@@ -144,3 +144,15 @@ Controllata visivamente la cattura Privacy desktop. Nel contesto di test locale
 non sono risultati cookie; richieste osservate verso localhost, fonts.googleapis.com,
 fonts.gstatic.com e cdnjs.cloudflare.com. Questo controllo non certifica la
 configurazione del sito pubblicato o i comportamenti futuri dell'hosting.
+
+
+## Pianta del sito e informative nel footer — 22 ottobre 2026
+
+Chrome a 320 × 740, 390 × 844, 834 × 1194, 1194 × 834, 1440 × 1000 e
+1000 × 600: quattro sale presenti, nessun overflow orizzontale del menu,
+nessun errore JavaScript rilevato. Provati Studio, Museo, Contatti e ritorno
+all'Ingresso dalla Privacy. Focus alla sezione scelta e ritorno al pulsante
+alla chiusura con Esc. Le informative risultano nel footer, assenti dall'header.
+Verificato l'arresto delle animazioni passando a movimento ridotto.
+Controllate le catture del menu su telefono piccolo e desktop.
+Prove su finestre simulate; non costituiscono una verifica su Safari iOS fisico.
