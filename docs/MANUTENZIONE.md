@@ -184,8 +184,8 @@ il logo conserva il nome accessibile. Esc chiude il menu anche se il focus non
 
 ## Pagine informative in revisione
 
-Privacy, Cookie e Note legali sono HTML separati, collegati da header, menu touch
-e footer in tutte le pagine. Il contenuto standard è dichiarato bozza e i dati
+Privacy, Cookie e Note legali sono HTML separati, collegati soltanto dal footer
+in tutte le pagine; non compaiono nella navigazione principale. Il contenuto standard è dichiarato bozza e i dati
 sconosciuti sono campi da compilare; non usare dati aziendali inventati.
 Le pagine sono `noindex,follow` fino alla revisione. `legal.css` gestisce indice,
 leggibilità, tabelle, footer e menu esteso. Per evitare sovrapposizioni, sotto
@@ -195,3 +195,9 @@ Non è stata aggiunta una gestione fittizia del consenso. Prima di pubblicare,
 verificare hosting e dominio effettivo e aggiornare l'informativa o introdurre
 blocco preventivo e gestione del consenso se servono per le tecnologie adottate.
 Dati da raccogliere e fonti sono elencati in `docs/REVISIONE-LEGALI.md`.
+
+
+## Informazioni nel footer
+
+Le informative restano accessibili nei tre collegamenti in fondo a ogni pagina.
+La navigazione principale è riservata a Studio, Museo e Contatti.
